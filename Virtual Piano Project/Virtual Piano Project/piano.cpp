@@ -11,6 +11,8 @@ int main()
 
 	//anthony
 	cout << "can you see this text in the github? \n";
+	//albert
+	cout << "yes\n";
 
 	system("pause");
 	return 0;
