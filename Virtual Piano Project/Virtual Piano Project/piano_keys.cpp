@@ -1,13 +1,24 @@
 #include "Header.h"
 
+/*Sprite
+===========================================
+Purpose: Set the piano keys coordinate
+		 It determine the amount of texture to be use for the key
+		 It determine the texture to be used
+*/
 void Sprite(Pianokeys &see)
 {
 	float xcoord = 670.f;
 	float xadd = 35.f;
 	float yheight = 350.f;
 
+	//Set the texture
 	see.key[0].setTexture(see.texturekey);
+
+	//Set the amount of texture to be used for the key
 	see.key[0].setTextureRect(sf::IntRect(10, 10, 30, 200));
+
+	//Set the (x,y) coordinate of the piano key
 	see.key[0].setPosition(sf::Vector2f(xcoord, yheight));
 
 	see.key[1].setTexture(see.texturekey);
@@ -75,6 +86,7 @@ void Sprite(Pianokeys &see)
 	see.key[16].setPosition(sf::Vector2f(xcoord + (xadd * 16), yheight));
 	//////////////////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////////////////
+	//set the texture for the black keys
 	see.bkey[0].setTexture(see.btexturekey);
 	see.bkey[0].setTextureRect(sf::IntRect(10, 10, 30, 120));
 	see.bkey[0].setPosition(sf::Vector2f(xcoord + 15, yheight));
