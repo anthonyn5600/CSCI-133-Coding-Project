@@ -18,5 +18,13 @@
     <ClCompile Include="piano.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="piano_keys.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Header.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
