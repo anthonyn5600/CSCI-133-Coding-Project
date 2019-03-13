@@ -6,7 +6,7 @@ using namespace std;
 
 int main()
 {
-	sf::RenderWindow window(sf::VideoMode(1920, 1080), "SFML works!");
+	sf::RenderWindow window(sf::VideoMode(1024, 769), "SFML works!");
 	sf::Text text;
 	sf::Font font;
 	sf::SoundBuffer buffer;
