@@ -25,10 +25,5 @@ public:
 	sf::Sound sound[17];
 };
 
-class Texttest
-{
-	public:
-		sf::Text texter;
-};
 
 #endif 
