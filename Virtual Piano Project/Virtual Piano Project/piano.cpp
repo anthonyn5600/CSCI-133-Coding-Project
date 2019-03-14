@@ -120,20 +120,117 @@ void SoundL(Pianosounds& hear)
 	hear.sound[2].setBuffer(hear.buffer[2]);
 	hear.sound[3].setBuffer(hear.buffer[3]);
 	hear.sound[4].setBuffer(hear.buffer[4]);
+	hear.sound[5].setBuffer(hear.buffer[5]);
+	hear.sound[6].setBuffer(hear.buffer[6]);
+	hear.sound[7].setBuffer(hear.buffer[7]);
+	hear.sound[8].setBuffer(hear.buffer[8]);
+	hear.sound[9].setBuffer(hear.buffer[9]);
+	hear.sound[10].setBuffer(hear.buffer[10]);
+	hear.sound[11].setBuffer(hear.buffer[11]);
+	hear.sound[12].setBuffer(hear.buffer[12]);
+	hear.sound[13].setBuffer(hear.buffer[13]);
+	hear.sound[14].setBuffer(hear.buffer[14]);
+	hear.sound[15].setBuffer(hear.buffer[15]);
+	hear.sound[16].setBuffer(hear.buffer[16]);
+	hear.sound[17].setBuffer(hear.buffer[17]);
+	hear.sound[18].setBuffer(hear.buffer[18]);
+	hear.sound[19].setBuffer(hear.buffer[19]);
+	hear.sound[20].setBuffer(hear.buffer[20]);
+	hear.sound[21].setBuffer(hear.buffer[21]);
+	hear.sound[22].setBuffer(hear.buffer[22]);
+	hear.sound[23].setBuffer(hear.buffer[23]);
+	hear.sound[24].setBuffer(hear.buffer[24]);
+	hear.sound[25].setBuffer(hear.buffer[25]);
+	hear.sound[26].setBuffer(hear.buffer[26]);
+	hear.sound[27].setBuffer(hear.buffer[27]);
+	hear.sound[28].setBuffer(hear.buffer[28]);
 
 	//load in the sound
-	if (!hear.buffer[0].loadFromFile("sounds/c4.wav"))
+	if (!hear.buffer[0].loadFromFile("sounds/c3.wav"))
 		cout << "Error in loading sound \n";
 
-	if (!hear.buffer[1].loadFromFile("sounds/d4.wav"))
+	if (!hear.buffer[1].loadFromFile("sounds/d3.wav"))
 		cout << "Error in loading sound \n";
 
-	if (!hear.buffer[2].loadFromFile("sounds/e4.wav"))
+	if (!hear.buffer[2].loadFromFile("sounds/e3.wav"))
 		cout << "Error in loading sound \n";
 
-	if (!hear.buffer[3].loadFromFile("sounds/f4.wav"))
+	if (!hear.buffer[3].loadFromFile("sounds/f3.wav"))
 		cout << "Error in loading sound \n";
-	if (!hear.buffer[4].loadFromFile("sounds/g4.wav"))
+
+	if (!hear.buffer[4].loadFromFile("sounds/g3.wav"))
+		cout << "Error in loading sound \n";
+
+	if (!hear.buffer[5].loadFromFile("sounds/a3.wav"))
+		cout << "Error in loading sound \n";
+
+	if (!hear.buffer[6].loadFromFile("sounds/b3.wav"))
+		cout << "Error in loading sound \n";
+
+	if (!hear.buffer[7].loadFromFile("sounds/c4.wav"))
+		cout << "Error in loading sound \n";
+
+	if (!hear.buffer[8].loadFromFile("sounds/d4.wav"))
+		cout << "Error in loading sound \n";
+
+	if (!hear.buffer[9].loadFromFile("sounds/e4.wav"))
+		cout << "Error in loading sound \n";
+
+	if (!hear.buffer[10].loadFromFile("sounds/f4.wav"))
+		cout << "Error in loading sound \n";
+
+	if (!hear.buffer[11].loadFromFile("sounds/g4.wav"))
+		cout << "Error in loading sound \n";
+
+	if (!hear.buffer[12].loadFromFile("sounds/a4.wav"))
+		cout << "Error in loading sound \n";
+
+	if (!hear.buffer[13].loadFromFile("sounds/b4.wav"))
+		cout << "Error in loading sound \n";
+
+	if (!hear.buffer[14].loadFromFile("sounds/c5.wav"))
+		cout << "Error in loading sound \n";
+
+	if (!hear.buffer[15].loadFromFile("sounds/d5.wav"))
+		cout << "Error in loading sound \n";
+
+	if (!hear.buffer[16].loadFromFile("sounds/e5.wav"))
+		cout << "Error in loading sound \n";
+
+	if (!hear.buffer[17].loadFromFile("sounds/c3#.wav"))
+		cout << "Error in loading sound \n";
+
+	if (!hear.buffer[18].loadFromFile("sounds/d3#.wav"))
+		cout << "Error in loading sound \n";
+
+	if (!hear.buffer[19].loadFromFile("sounds/f3#.wav"))
+		cout << "Error in loading sound \n";
+
+	if (!hear.buffer[20].loadFromFile("sounds/g3#.wav"))
+		cout << "Error in loading sound \n";
+
+	if (!hear.buffer[21].loadFromFile("sounds/a3#.wav"))
+		cout << "Error in loading sound \n";
+
+	if (!hear.buffer[22].loadFromFile("sounds/c4#.wav"))
+		cout << "Error in loading sound \n";
+
+	if (!hear.buffer[23].loadFromFile("sounds/d4#.wav"))
+		cout << "Error in loading sound \n";
+
+	if (!hear.buffer[24].loadFromFile("sounds/f4#.wav"))
+		cout << "Error in loading sound \n";
+
+	if (!hear.buffer[25].loadFromFile("sounds/g4#.wav"))
+		cout << "Error in loading sound \n";
+
+	if (!hear.buffer[26].loadFromFile("sounds/a4#.wav"))
+		cout << "Error in loading sound \n";
+
+	if (!hear.buffer[27].loadFromFile("sounds/c5#.wav"))
+		cout << "Error in loading sound \n";
+
+	if (!hear.buffer[28].loadFromFile("sounds/d5#.wav"))
 		cout << "Error in loading sound \n";
 }
 
