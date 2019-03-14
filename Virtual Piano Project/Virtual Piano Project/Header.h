@@ -25,5 +25,10 @@ public:
 	sf::Sound sound[17];
 };
 
-
+void Sprite(Pianokeys& see);
+void Loader(Pianokeys& see);
+void SoundL(Pianosounds& hear);
+void TextLoader(sf::Text& letters, sf::Font& style);
+void PianoDrawing(sf::RenderWindow& window, Pianokeys& see);
+void Pianocontrols(Pianokeys& see, Pianosounds& hear, sf::Event& event);
 #endif 
