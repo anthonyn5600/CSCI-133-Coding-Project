@@ -297,7 +297,7 @@ void Pianocontrols(Pianokeys& see, Pianosounds& hear, sf::Event& event)
 		see.key[8].setColor(sf::Color(255, 255, 255));
 	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
 	{
 		//a function that set the sprite color
 		see.key[0].setColor(sf::Color(0, 255, 0));
@@ -306,49 +306,195 @@ void Pianocontrols(Pianokeys& see, Pianosounds& hear, sf::Event& event)
 		hear.sound[0].play();
 	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 	{
 		see.key[1].setColor(sf::Color(255, 0, 0));
 		hear.sound[1].play();
 	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
 	{
 		see.key[2].setColor(sf::Color(170, 153, 0));
 		hear.sound[2].play();
 	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::F))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
 	{
 		see.key[3].setColor(sf::Color(135, 103, 0));
 		hear.sound[3].play();
 	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::G))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
 		see.key[4].setColor(sf::Color(190, 153, 0));
 		hear.sound[4].play(); // now we can play g4 
 	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::H))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 	{
-		see.key[5].setColor(sf::Color(135, 103, 100));
+		see.key[4].setColor(sf::Color(190, 153, 0));
+		hear.sound[5].play();
+
+	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+	{
+		
+		hear.sound[6].play(); 
+	
+	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+	{
+		
+		hear.sound[7].play();
+	
+	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::I))
+	{
+		
+		hear.sound[8].play();  
+		
+	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::O))
+	{
+		
+		hear.sound[9].play();
+
+	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::P))
+	{
+		
+		hear.sound[10].play(); 
+	
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::J))
 	{
-		see.key[6].setColor(sf::Color(200, 153, 0));
+		
+		hear.sound[11].play();
+	
 	}
-
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::K))
 	{
-		see.key[7].setColor(sf::Color(30, 255, 0));
+		
+		hear.sound[12].play(); 
+		
 	}
-
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::L))
 	{
-		see.key[8].setColor(sf::Color(123, 255, 0));
+		
+		hear.sound[13].play();
+	
+	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::B))
+	{
+		
+		hear.sound[14].play(); 
+	
+	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::N))
+	{
+
+		hear.sound[15].play();
+
+	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::M))
+	{
+	
+		hear.sound[16].play(); 
+
+	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
+	{
+	
+		hear.sound[17].play();
+
+	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2))
+	{
+	
+		hear.sound[18].play(); 
+	
+	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num3))
+	{
+	
+		hear.sound[19].play();
+
+	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num4))
+	{
+	
+		hear.sound[20].play(); 
+
+	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num5))
+	{
+	
+		hear.sound[21].play();
+
+	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num6))
+	{
+	
+		hear.sound[22].play(); 
+
+	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num7))
+	{
+	
+		hear.sound[23].play();
+
+	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num8))
+	{
+		
+		hear.sound[24].play();
+	
+	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num9))
+	{
+	
+		hear.sound[25].play();
+
+	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num0))
+	{
+
+		hear.sound[26].play(); 
+
+	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Subtract))
+	{
+	
+		hear.sound[27].play();
+	
+	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Equal))
+	{
+	
+		hear.sound[28].play(); 
+	
 	}
 }
