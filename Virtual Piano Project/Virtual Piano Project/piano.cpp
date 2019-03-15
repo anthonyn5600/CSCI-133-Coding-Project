@@ -379,7 +379,7 @@ void Pianocontrols(Pianokeys& see, Pianosounds& hear, sf::Event& event)
 	
 	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Comma))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Quote))
 	{
 		
 		hear.sound[12].play(); 
