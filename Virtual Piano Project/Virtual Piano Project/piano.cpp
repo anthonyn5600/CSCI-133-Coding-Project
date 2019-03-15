@@ -297,7 +297,7 @@ void Pianocontrols(Pianokeys& see, Pianosounds& hear, sf::Event& event)
 		see.key[8].setColor(sf::Color(255, 255, 255));
 	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Tab))
 	{
 		//a function that set the sprite color
 		see.key[0].setColor(sf::Color(0, 255, 0));
@@ -306,38 +306,38 @@ void Pianocontrols(Pianokeys& see, Pianosounds& hear, sf::Event& event)
 		hear.sound[0].play();
 	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
 	{
 		see.key[1].setColor(sf::Color(255, 0, 0));
 		hear.sound[1].play();
 	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
 		see.key[2].setColor(sf::Color(170, 153, 0));
 		hear.sound[2].play();
 	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
 	{
 		see.key[3].setColor(sf::Color(135, 103, 0));
 		hear.sound[3].play();
 	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
 		see.key[4].setColor(sf::Color(190, 153, 0));
 		hear.sound[4].play(); // now we can play g4 
 	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::F))
 	{
 		see.key[4].setColor(sf::Color(190, 153, 0));
 		hear.sound[5].play();
 
 	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::G))
 	{
 		
 		hear.sound[6].play(); 
@@ -351,63 +351,63 @@ void Pianocontrols(Pianokeys& see, Pianosounds& hear, sf::Event& event)
 	
 	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::I))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::J))
 	{
 		
 		hear.sound[8].play();  
 		
 	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::O))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::K))
 	{
 		
 		hear.sound[9].play();
 
 	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::P))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::L))
 	{
 		
 		hear.sound[10].play(); 
 	
 	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::J))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Slash))
 	{
 		
 		hear.sound[11].play();
 	
 	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::K))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Comma))
 	{
 		
 		hear.sound[12].play(); 
 		
 	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::L))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::RBracket))
 	{
 		
 		hear.sound[13].play();
 	
 	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::B))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::BackSlash))
 	{
 		
 		hear.sound[14].play(); 
 	
 	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::N))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::BackSpace))
 	{
 
 		hear.sound[15].play();
 
 	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::M))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Delete))
 	{
 	
 		hear.sound[16].play(); 
@@ -484,7 +484,7 @@ void Pianocontrols(Pianokeys& see, Pianosounds& hear, sf::Event& event)
 
 	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Subtract))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Dash))
 	{
 	
 		hear.sound[27].play();
