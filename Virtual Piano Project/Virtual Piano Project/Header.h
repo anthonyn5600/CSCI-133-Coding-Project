@@ -21,8 +21,8 @@ public:
 class Pianosounds
 {
 public:
-	sf::SoundBuffer buffer[17];
-	sf::Sound sound[17];
+	sf::SoundBuffer buffer[29];
+	sf::Sound sound[29];
 };
 
 void Sprite(Pianokeys& see);
