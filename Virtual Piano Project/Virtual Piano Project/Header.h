@@ -13,9 +13,11 @@ public:
 	sf::Texture texture;
 	sf::Texture texturekey;
 	sf::Texture btexturekey;
+	sf::Texture graykey;
+	sf::Texture gradientkey;
 	sf::Sprite sprite;
 	sf::Sprite key[17];
-	sf::Sprite bkey[17];
+	sf::Sprite bkey[12];
 };
 
 class Pianosounds

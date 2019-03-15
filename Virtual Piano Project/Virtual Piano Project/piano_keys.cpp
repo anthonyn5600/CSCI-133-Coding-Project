@@ -16,7 +16,7 @@ void Sprite(Pianokeys &see)
 	see.key[0].setTexture(see.texturekey);
 
 	//Set the amount of texture to be used for the key
-	see.key[0].setTextureRect(sf::IntRect(10, 10, 30, 200));
+	see.key[0].setTextureRect(sf::IntRect(10, 100, 30, 200));
 
 	//Set the (x,y) coordinate of the piano key
 	see.key[0].setPosition(sf::Vector2f(xcoord, yheight));
