@@ -38,7 +38,8 @@ int main()
 
 	sf::Clock clocks;
 	sf::Time timer;
-
+	sf::Mouse mouse;
+	int mousepos;
 	while (window.isOpen())
 	{
 		
@@ -49,6 +50,8 @@ int main()
 			//calls the textloader function
 			TextLoader(text, font);
 
+
+			mousepos = mouse.getPosition(window).x;
 			if (event.type == sf::Event::Closed)
 				window.close();
 
@@ -62,6 +65,7 @@ int main()
 				clocks.restart();
 			}
 				
+			Buttons(see,mousepos);
 
 			//calls the pianocontrols function
 			Pianocontrols(see, hear, event);
@@ -123,6 +127,11 @@ void Loader(Pianokeys &see)
 
 	if (!see.graykey.loadFromFile("sprites/graykey.gif"))
 		cout << "Error in loading textures \n"; 
+
+	//to load in our texture
+	if (!see.buttonlooks.loadFromFile("sprites/buttonbackground.gif"))
+		cout << "Error in loading textures \n"; // this is to show if we get a error when loading it up
+
 }
 
 /*SoundL
@@ -297,6 +306,10 @@ void PianoDrawing(sf::RenderWindow& window, Pianokeys &see)
 	window.draw(see.bkey[10]);
 	window.draw(see.bkey[11]);
 
+	//to draw our sprite
+	window.draw(see.button);
+
+	//now we going to define our sprite in our window
 }
 
 /*Pianocontrols
@@ -341,211 +354,197 @@ void Pianocontrols(Pianokeys& see, Pianosounds& hear, sf::Event& event)
 		see.bkey[9].setTexture(see.btexturekey);
 		see.bkey[10].setTexture(see.btexturekey);
 		see.bkey[11].setTexture(see.btexturekey);
-	
+
 	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Tab)) // c3
+	switch (event.type)
 	{
+	case sf::Event::KeyPressed:
+		switch (event.key.code)
+		{
+		case sf::Keyboard::Tab: // c3
 			//a function changes the texture
 			see.key[0].setTexture(see.gradientkey);
 			//once the key is pressed hear.sound[0] is played
 			hear.sound[0].play();
-			
-	}
+			break;
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) // d3
-	{
-		see.key[1].setTexture(see.gradientkey);
-		hear.sound[1].play();
+		case sf::Keyboard::Q: //d3
+			see.key[1].setTexture(see.gradientkey);
+			hear.sound[1].play();
+			break;
 
-	}
+		case sf::Keyboard::A: //e3
+			see.key[2].setTexture(see.gradientkey);
+			hear.sound[2].play();
+			break;
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) // e3
-	{
-		see.key[2].setTexture(see.gradientkey);
-		hear.sound[2].play();
-	}
+		case sf::Keyboard::Z: //f3
+			see.key[3].setTexture(see.gradientkey);
+			hear.sound[3].play();
+			break;
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z)) // f3
-	{
-		see.key[3].setTexture(see.gradientkey);
-		hear.sound[3].play();
-	}
+		case sf::Keyboard::D: //g3
+			see.key[4].setTexture(see.gradientkey);
+			hear.sound[4].play();
+			break;
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) // g3
-	{
-		see.key[4].setTexture(see.gradientkey);
-		hear.sound[4].play(); 
-	}
+		case sf::Keyboard::F: //a3
+			see.key[5].setTexture(see.gradientkey);
+			hear.sound[5].play();
+			break;
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::F)) // a3
-	{
-		see.key[5].setTexture(see.gradientkey);
-		hear.sound[5].play();
+		case sf::Keyboard::G: //b3
+			see.key[6].setTexture(see.gradientkey);
+			hear.sound[6].play();
+			break;
 
-	}
+		case sf::Keyboard::Space: //c4
+			see.key[7].setTexture(see.gradientkey);
+			hear.sound[7].play();
+			break;
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::G)) // b3
-	{
-		see.key[6].setTexture(see.gradientkey);
-		hear.sound[6].play(); 
-	
-	}
+		case sf::Keyboard::J: //d4
+			see.key[8].setTexture(see.gradientkey);
+			hear.sound[8].play();
+			break;
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) // c4
-	{
-		see.key[7].setTexture(see.gradientkey);
-		hear.sound[7].play();
-	
-	}
+		case sf::Keyboard::K: //e4
+			see.key[9].setTexture(see.gradientkey);
+			hear.sound[9].play();
+			break;
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::J)) // d4
-	{
-		see.key[8].setTexture(see.gradientkey);
-		hear.sound[8].play();  
-		
-	}
+		case sf::Keyboard::L: //f4
+			see.key[10].setTexture(see.gradientkey);
+			hear.sound[10].play();
+			break;
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::K)) // e4
-	{
-		see.key[9].setTexture(see.gradientkey);
-		hear.sound[9].play();
+		case sf::Keyboard::Slash: //g4
+			see.key[11].setTexture(see.gradientkey);
+			hear.sound[11].play();
+			break;
 
-	}
+		case sf::Keyboard::Quote: //a4
+			see.key[12].setTexture(see.gradientkey);
+			hear.sound[12].play();
+			break;
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::L)) // f4
-	{
-		see.key[10].setTexture(see.gradientkey);
-		hear.sound[10].play(); 
-	
-	}
+		case sf::Keyboard::RBracket: //b4
+			see.key[13].setTexture(see.gradientkey);
+			hear.sound[13].play();
+			break;
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Slash)) // g4
-	{
-		see.key[11].setTexture(see.gradientkey);
-		hear.sound[11].play();
-	
-	}
+		case sf::Keyboard::BackSlash: //c5
+			see.key[14].setTexture(see.gradientkey);
+			hear.sound[14].play();
+			break;
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Quote)) // a4
-	{
-		see.key[12].setTexture(see.gradientkey);
-		hear.sound[12].play(); 
-		
-	}
+		case sf::Keyboard::BackSpace: //d5
+			see.key[15].setTexture(see.gradientkey);
+			hear.sound[15].play();
+			break;
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::RBracket)) // b4
-	{
-		see.key[13].setTexture(see.gradientkey);
-		hear.sound[13].play();
-	
-	}
+		case sf::Keyboard::Delete: //e5
+			see.key[16].setTexture(see.gradientkey);
+			hear.sound[16].play();
+			break;
+			//////////////////////////////////////////////////////////////////////
+		case sf::Keyboard::Num1: //c3#
+			see.bkey[0].setTexture(see.graykey);
+			hear.sound[17].play();
+			break;
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::BackSlash)) // c5
-	{
-		see.key[14].setTexture(see.gradientkey);
-		hear.sound[14].play(); 
-	
-	}
+		case sf::Keyboard::Num2: //d3#
+			see.bkey[1].setTexture(see.graykey);
+			hear.sound[18].play();
+			break;
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::BackSpace)) // d5
-	{
-		see.key[15].setTexture(see.gradientkey);
-		hear.sound[15].play();
 
-	}
+		case sf::Keyboard::Num3: //f3#
+			see.bkey[2].setTexture(see.graykey);
+			hear.sound[19].play();
+			break;
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Delete)) // e5
-	{
-		see.key[16].setTexture(see.gradientkey);
-		hear.sound[16].play(); 
 
-	}
-/////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////
+		case sf::Keyboard::Num4: //g3#
+			see.bkey[3].setTexture(see.graykey);
+			hear.sound[20].play();
+			break;
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1)) // c3#
-	{
-		see.bkey[0].setTexture(see.graykey);
-		hear.sound[17].play();
 
-	}
+		case sf::Keyboard::Num5: //a3#
+			see.bkey[4].setTexture(see.graykey);
+			hear.sound[21].play();
+			break;
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2)) // d3#
-	{
-		see.bkey[1].setTexture(see.graykey);
-		hear.sound[18].play(); 
-	
-	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num3)) // f3#
-	{
-		see.bkey[2].setTexture(see.graykey);
-		hear.sound[19].play();
+		case sf::Keyboard::Num6: //c4#
+			see.bkey[5].setTexture(see.graykey);
+			hear.sound[22].play();
+			break;
 
-	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num4)) // g3#
-	{
-		see.bkey[3].setTexture(see.graykey);
-		hear.sound[20].play(); 
+		case sf::Keyboard::Num7: //d4# 
+			see.bkey[6].setTexture(see.graykey);
+			hear.sound[23].play();
+			break;
 
-	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num5)) // a3#
-	{
-		see.bkey[4].setTexture(see.graykey);
-		hear.sound[21].play();
+		case sf::Keyboard::Num8: //f4#
+			see.bkey[7].setTexture(see.graykey);
+			hear.sound[24].play();
+			break;
 
-	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num6)) // c4#
-	{
-		see.bkey[5].setTexture(see.graykey);
-		hear.sound[22].play(); 
+		case sf::Keyboard::Num9: //g4#
+			see.bkey[8].setTexture(see.graykey);
+			hear.sound[25].play();
+			break;
 
-	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num7)) // d4#
-	{
-		see.bkey[6].setTexture(see.graykey);
-		hear.sound[23].play();
+		case sf::Keyboard::Num0: //a4#
+			see.bkey[9].setTexture(see.graykey);
+			hear.sound[26].play();
+			break;
 
-	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num8)) // f4#
-	{
-		see.bkey[7].setTexture(see.graykey);
-		hear.sound[24].play();
-	
-	}
+		case sf::Keyboard::Dash: //c5#
+			see.bkey[10].setTexture(see.graykey);
+			hear.sound[27].play();
+			break;
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num9)) // g4#
-	{
-		see.bkey[8].setTexture(see.graykey);
-		hear.sound[25].play();
+		case sf::Keyboard::Equal: //d5#
 
-	}
+			see.bkey[11].setTexture(see.graykey);
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num0)) // a4#
-	{
-		see.bkey[9].setTexture(see.graykey);
-		hear.sound[26].play(); 
+			hear.sound[28].play();
+			break;
 
-	}
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Dash)) // c5#
-	{
-		see.bkey[10].setTexture(see.graykey);
-		hear.sound[27].play();
-	
-	}
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Equal)) // d5#
-	{
-		see.bkey[11].setTexture(see.graykey);
-	
-		hear.sound[28].play(); 
-	
+		}
 	}
 }
+
+void Buttons(Pianokeys& see, int& mouseposition)
+{
+
+	sf::Mouse mouse;
+
+	see.button.setTextureRect(sf::IntRect(10, 10, 200, 100));
+	see.button.setPosition(sf::Vector2f(800.f, 100.f));
+
+
+	if (mouseposition >= 800 && mouseposition <= 1000)
+	{
+		see.button.setTexture(see.gradientkey);
+	}
+	else
+	{
+		see.button.setTexture(see.buttonlooks);
+	}
+
+	cout << endl;
+	cout << see.button.getPosition().x << endl;
+	cout << mouseposition;
+}
+//	cout << mouse.getPosition(window).x << endl;
+//}
