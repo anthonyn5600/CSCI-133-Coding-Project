@@ -9,18 +9,15 @@ using namespace std;
 class Pianokeys
 {
 public:
-	//hello, welcome to the sprite tutorial.
-	//to make a sprite we need two variable texture and sprite
-	//the sprite is our entity and the texture is how our sprite to look like
 	sf::Texture texture;
 	sf::Texture texturekey;
 	sf::Texture btexturekey;
 	sf::Texture graykey;
 	sf::Texture gradientkey;
 
-	//we going to use these two as an example
-	//im going to show where you load the texture and sprite
-	sf::Texture buttonlooks; // make sure to declare these two or however you want it to be like sf::Texture example or sf::Sprite Blahblah
+
+	sf::Texture buttonlooks;
+	sf::Texture buttonmouseover;
 	sf::Sprite button;
 
 	sf::Sprite key[17];
@@ -41,5 +38,5 @@ void SoundL(Pianosounds& hear);
 void TextLoader(sf::Text& letters, sf::Font& style);
 void PianoDrawing(sf::RenderWindow& window, Pianokeys& see);
 void Pianocontrols(Pianokeys& see, Pianosounds& hear, sf::Event& event);
-void Buttons(Pianokeys& see, int& mouseposition);
+void Buttons(Pianokeys& see, int& mouseposition, int& mousepositiony);
 #endif 

@@ -39,10 +39,24 @@ int main()
 	sf::Clock clocks;
 	sf::Time timer;
 	sf::Mouse mouse;
-	int mousepos;
+
+	int mouseposx;
+	int mouseposy;
+
 	while (window.isOpen())
 	{
-		
+		timer = clocks.getElapsedTime();
+		float count = timer.asSeconds();
+
+		if (count > 10)
+		{
+			//working timer
+			cout << "ten second has passed \n";
+			clocks.restart();
+		}
+
+
+
 		while (window.pollEvent(event))
 		{
 			//calls the loader function
@@ -51,22 +65,19 @@ int main()
 			TextLoader(text, font);
 
 
-			mousepos = mouse.getPosition(window).x;
+			mouseposx = mouse.getPosition(window).x;
+			mouseposy = mouse.getPosition(window).y;
+
 			if (event.type == sf::Event::Closed)
 				window.close();
 
-		
-			timer = clocks.getElapsedTime();
-			float count = timer.asSeconds();
-
-			if (count > 10)
-			{
-				cout << "one second has passed \n";
-				clocks.restart();
-			}
 				
-			Buttons(see,mousepos);
+			//calls the button function
+			Buttons(see, mouseposx, mouseposy);
 
+			//cout << mouse.getPosition(window).x << endl;
+
+			//cout << mouse.getPosition(window).y << endl;
 			//calls the pianocontrols function
 			Pianocontrols(see, hear, event);
 		}
@@ -112,7 +123,7 @@ void TextLoader(sf::Text& letters, sf::Font& style)
 
 /*Loader
 ===========================================
-Purpose: Load in the .gif files from the folder.
+Purpose: Load in the image files from the folder.
 */
 void Loader(Pianokeys &see)
 {
@@ -128,9 +139,12 @@ void Loader(Pianokeys &see)
 	if (!see.graykey.loadFromFile("sprites/graykey.gif"))
 		cout << "Error in loading textures \n"; 
 
-	//to load in our texture
-	if (!see.buttonlooks.loadFromFile("sprites/buttonbackground.gif"))
-		cout << "Error in loading textures \n"; // this is to show if we get a error when loading it up
+	if (!see.buttonlooks.loadFromFile("sprites/tutorialtext.png"))
+		cout << "Error in loading textures \n"; 
+
+	if (!see.buttonmouseover.loadFromFile("sprites/tutorialtextg.png"))
+		cout << "Error in loading textures \n";
+
 
 }
 
@@ -524,27 +538,48 @@ void Pianocontrols(Pianokeys& see, Pianosounds& hear, sf::Event& event)
 	}
 }
 
-void Buttons(Pianokeys& see, int& mouseposition)
-{
+/*Buttons
+===========================================
+Purpose: Create the tutorial button
+		 When the button is clicked on, a new window is popped up showing the tutorial
 
+*/
+
+void Buttons(Pianokeys& see, int& mousepositionx, int& mousepositiony)
+{
+	sf::Event tutorialevent;
 	sf::Mouse mouse;
 
-	see.button.setTextureRect(sf::IntRect(10, 10, 200, 100));
+	see.button.setTextureRect(sf::IntRect(8, 10, 200, 100));
 	see.button.setPosition(sf::Vector2f(800.f, 100.f));
 
 
-	if (mouseposition >= 800 && mouseposition <= 1000)
+	//to detect if the mouse is over the button so it can change to a different text color
+	if (mousepositionx >= 800 && mousepositionx <= 1000 && mousepositiony >= 100 && mousepositiony <= 200)
 	{
-		see.button.setTexture(see.gradientkey);
+		see.button.setTexture(see.buttonmouseover);
+
+		//to detect a left click and it will open up a new window 
+		if (mouse.isButtonPressed(mouse.Left))
+		{
+			sf::RenderWindow tutorialW(sf::VideoMode(640, 480), "Tutorial");
+
+			while (tutorialW.isOpen())
+			{
+				while (tutorialW.pollEvent(tutorialevent))
+				{
+					if (tutorialevent.type == sf::Event::Closed)
+							tutorialW.close();
+				}
+					tutorialW.clear();
+					tutorialW.display();
+			}
+		}
 	}
 	else
 	{
 		see.button.setTexture(see.buttonlooks);
 	}
 
-	cout << endl;
-	cout << see.button.getPosition().x << endl;
-	cout << mouseposition;
 }
-//	cout << mouse.getPosition(window).x << endl;
-//}
+
