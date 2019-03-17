@@ -7,7 +7,7 @@ int main()
 	sf::Event event;
 
 	//set the screen resolution
-	sf::RenderWindow window(sf::VideoMode(1920, 1080), "SFML works!");
+	sf::RenderWindow window(sf::VideoMode(1920, 1080), "Virtual Piano");
 
 	//uses the SFML Text class and create a variable named "text"
 	sf::Text text;
