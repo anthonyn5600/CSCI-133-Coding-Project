@@ -280,6 +280,9 @@ void SoundL(Pianosounds& hear)
 
 	if (!hear.buffer[28].loadFromFile("sounds/d5#.wav"))
 		cout << "Error in loading sound \n";
+	
+	if (!hear.recorder.isAvailable())
+		cout << "Error in loading recorder \n";
 }
 
 /*PianoDrawing
@@ -533,7 +536,27 @@ void Pianocontrols(Pianokeys& see, Pianosounds& hear, sf::Event& event)
 
 			hear.sound[28].play();
 			break;
-
+				
+		case sf::Keyboard::LShift:
+			hear.recorder.start();
+			break;
+		
+		case sf::Keyboard::LControl:
+			{
+				hear.recorder.stop();
+				hear.recordingBuffer = hear.recorder.getBuffer();
+				hear.recordingBuffer.saveToFile("recorded.wav");
+			}
+			break;
+				
+		case sf::Keyboard::RShift:
+			{
+				if (!hear.recorded.openFromFile("recorded.wav"))
+					cout << "Error in loading sound \n";
+				else
+					hear.recorded.play();	
+			}
+			break;
 		}
 	}
 }
