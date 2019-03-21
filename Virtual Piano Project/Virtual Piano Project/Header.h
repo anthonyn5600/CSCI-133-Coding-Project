@@ -19,6 +19,8 @@ public:
 	sf::Texture buttonlooks;
 	sf::Texture buttonmouseover;
 	sf::Sprite button;
+	sf::Texture Mascot;
+	sf::Sprite GameM;
 
 	sf::Sprite key[17];
 	sf::Sprite bkey[12];
