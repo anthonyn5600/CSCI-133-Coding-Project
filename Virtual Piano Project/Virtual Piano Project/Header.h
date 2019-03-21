@@ -28,8 +28,11 @@ public:
 class Pianosounds
 {
 public:
-	sf::SoundBuffer buffer[29];
-	sf::Sound sound[29];
+	sf::SoundBuffer 	buffer[29];
+	sf::SoundBuffer 	recordingBuffer;
+	sf::Sound 		sound[29];
+	sf::SoundBufferRecorder recorder;
+	sf::Music 		recorded;
 };
 
 void Sprite(Pianokeys& see);
