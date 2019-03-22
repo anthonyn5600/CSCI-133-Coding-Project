@@ -529,7 +529,7 @@ void Pianocontrols(Pianokeys& see, Pianosounds& hear, sf::Event& event)
 		case sf::Keyboard::LShift:
 		{
 			hear.clocks.restart();
-			while (count =< 5.0f)
+			while (count <= 5.0f)
 			{
 				hear.timer = hear.clocks.getElapsedTime();
 				count = hear.timer.asSeconds();
