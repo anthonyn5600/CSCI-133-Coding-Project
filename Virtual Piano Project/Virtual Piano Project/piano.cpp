@@ -325,7 +325,8 @@ Purpose: Set the color back to normal if there are no key pressed
 */
 void Pianocontrols(Pianokeys& see, Pianosounds& hear, sf::Event& event)
 {
-
+	float count = 0.0; // decalre count for the timer method
+	
 	if (event.type == sf::Event::KeyReleased == true)
 	{
 		//If no key is pressed, all piano keys are white
