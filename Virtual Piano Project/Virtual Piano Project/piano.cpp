@@ -611,3 +611,14 @@ void Buttons(Pianokeys& see, int& mousepositionx, int& mousepositiony)
 
 }
 
+//int Pianokeys::Pianomovement(float& time, float &multiply)
+//{
+//	if (time >= multiply)
+//	{
+//		key[0].move(0, 0.5);
+//		bkey[0].move(0, 0.5);
+//		return multiply;
+//	}
+//	else
+//		return multiply * 0;
+//}
