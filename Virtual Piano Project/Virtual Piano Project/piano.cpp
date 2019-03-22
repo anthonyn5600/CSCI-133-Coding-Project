@@ -590,8 +590,8 @@ void Buttons(Pianokeys& see, int& mousepositionx, int& mousepositiony)
 				{
 					if (!see.Mascot.loadFromFile("sprites/Mascot.png"))
 						cout << "Error" << endl;
-					see.GameM.settexture(see.Mascot);
-					see.GameM.settextureRect(sf::IntRect(10, 10, 30, 200));
+					see.GameM.setTexture(see.Mascot);
+					see.GameM.setTextureRect(sf::IntRect(10, 10, 30, 200));
 					see.GameM.setPosition(sf::Vector2f(0, 0));
 
 

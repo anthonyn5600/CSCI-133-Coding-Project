@@ -1,3 +1,4 @@
+
 #ifndef MEMBERSHIP_H
 #define MEMBERSHIP_H
 #include <SFML/Graphics.hpp>
@@ -14,7 +15,7 @@ public:
 	sf::Texture btexturekey;
 	sf::Texture graykey;
 	sf::Texture gradientkey;
-	
+
 
 	sf::Texture buttonlooks;
 	sf::Texture buttonmouseover;
@@ -30,11 +31,13 @@ public:
 class Pianosounds
 {
 public:
-	sf::SoundBuffer buffer[29];
-	sf::SoundBuffer recordingBuffer;
-	sf::Sound sound[29];
+	sf::SoundBuffer 	buffer[29];
+	sf::SoundBuffer 	recordingBuffer;
+	sf::Sound 		sound[29];
 	sf::SoundBufferRecorder recorder;
-	sf::Music recorded;
+	sf::Music 		recorded;
+	sf::Clock		clocks;
+	sf::Time		timer;
 };
 
 void Sprite(Pianokeys& see);
@@ -44,4 +47,5 @@ void TextLoader(sf::Text& letters, sf::Font& style);
 void PianoDrawing(sf::RenderWindow& window, Pianokeys& see);
 void Pianocontrols(Pianokeys& see, Pianosounds& hear, sf::Event& event);
 void Buttons(Pianokeys& see, int& mouseposition, int& mousepositiony);
-#endif 
+
+#endif
