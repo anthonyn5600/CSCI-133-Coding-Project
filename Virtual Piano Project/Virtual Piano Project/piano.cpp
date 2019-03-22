@@ -45,18 +45,6 @@ int main()
 
 	while (window.isOpen())
 	{
-		timer = clocks.getElapsedTime();
-		float count = timer.asSeconds();
-
-		if (count > 10)
-		{
-			//working timer
-			cout << "ten second has passed \n";
-			clocks.restart();
-		}
-
-
-
 		while (window.pollEvent(event))
 		{
 			//calls the loader function
