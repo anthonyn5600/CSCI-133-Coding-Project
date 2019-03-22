@@ -45,18 +45,6 @@ int main()
 
 	while (window.isOpen())
 	{
-		timer = clocks.getElapsedTime();
-		float count = timer.asSeconds();
-
-		if (count > 10)
-		{
-			//working timer
-			cout << "ten second has passed \n";
-			clocks.restart();
-		}
-
-
-
 		while (window.pollEvent(event))
 		{
 			//calls the loader function
@@ -538,7 +526,15 @@ void Pianocontrols(Pianokeys& see, Pianosounds& hear, sf::Event& event)
 			break;
 
 		case sf::Keyboard::LShift:
+		{
+			hear.clocks.restart();
+			while (count =< 5.0f)
+			{
+				hear.timer = hear.clocks.getElapsedTime();
+				count = hear.timer.asSeconds();
+			}
 			hear.recorder.start();
+		}
 			break;
 
 		case sf::Keyboard::LControl:
