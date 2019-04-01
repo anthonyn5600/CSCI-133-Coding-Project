@@ -11,9 +11,11 @@ int main()
 
 	//uses the SFML Text class and create a variable named "text"
 	sf::Text text;
+	sf::Text tutlett[30];
 
 	//uses the SFML Font class and create a variable named "font"
 	sf::Font font;
+	sf::Font tuttext;
 
 	//Pianokeys and Pianosounds are classes define in
 	//the Header.h 
@@ -32,6 +34,7 @@ int main()
 
 	//load the text font files
 	font.loadFromFile("fonts/Julietta-Messie-Demo.otf");
+	tuttext.loadFromFile("fonts/OpenSans-Bold.ttf");
 
 	//Prevent spam of holding down a key
 	window.setKeyRepeatEnabled(false);
@@ -42,6 +45,7 @@ int main()
 
 	int mouseposx;
 	int mouseposy;
+	int click = 0;
 
 	while (window.isOpen())
 	{
@@ -50,7 +54,7 @@ int main()
 			//calls the loader function
 			Loader(see);
 			//calls the textloader function
-			TextLoader(text, font);
+			TextLoader(text, font, tutlett, tuttext);
 
 
 			mouseposx = mouse.getPosition(window).x;
@@ -60,8 +64,6 @@ int main()
 				window.close();
 
 
-			//calls the button function
-			Buttons(see, mouseposx, mouseposy);
 
 			//cout << mouse.getPosition(window).x << endl;
 
@@ -76,6 +78,10 @@ int main()
 		PianoDrawing(window, see);
 
 		window.draw(text);
+
+		//calls the button function
+		see.Buttons(see, mouseposx, mouseposy, window, tutlett);
+
 		window.display();
 	}
 
@@ -90,22 +96,212 @@ Purpose: Draw the text
 		  Set the color
 		  Write down the text
 */
-void TextLoader(sf::Text& letters, sf::Font& style)
+void TextLoader(sf::Text& letters, sf::Font& style, sf::Text* tutlett, sf::Font& tuttext)
 {
+	float xposition = 715.f;
+	float xadd = 35.f;
+	float xmultiplier = 1.f;
+
+	float yposition = 500.f;
 	// select the font
 	letters.setFont(style); // fontg is a sf::Font
-
 	// set the string to display
 	letters.setString("Virtual Piano");
-
 	// set the character size
 	letters.setCharacterSize(100); // in pixels, not points!
-
 	// set the color
 	letters.setFillColor(sf::Color::Red);
-
 	// set the text style
 	letters.setStyle(sf::Text::Bold | sf::Text::Underlined);
+
+	tutlett[0].setFont(tuttext);
+	tutlett[0].setString("Tab");
+	tutlett[0].setCharacterSize(15);
+	tutlett[0].setFillColor(sf::Color::Red);
+	tutlett[0].setPosition(670.f, yposition);
+
+	tutlett[1].setFont(tuttext);
+	tutlett[1].setString("Q");
+	tutlett[1].setCharacterSize(15);
+	tutlett[1].setFillColor(sf::Color::Red);
+	tutlett[1].setPosition(xposition, yposition);
+
+	tutlett[2].setFont(tuttext);
+	tutlett[2].setString("A");
+	tutlett[2].setCharacterSize(15);
+	tutlett[2].setFillColor(sf::Color::Red);
+	tutlett[2].setPosition((xposition + (xadd * xmultiplier)), yposition);
+	xmultiplier++;
+
+	tutlett[3].setFont(tuttext);
+	tutlett[3].setString("Z");
+	tutlett[3].setCharacterSize(15);
+	tutlett[3].setFillColor(sf::Color::Red);
+	tutlett[3].setPosition((xposition + (xadd * xmultiplier)), yposition);
+	xmultiplier++;
+
+	tutlett[4].setFont(tuttext);
+	tutlett[4].setString("D");
+	tutlett[4].setCharacterSize(15);
+	tutlett[4].setFillColor(sf::Color::Red);
+	tutlett[4].setPosition((xposition + (xadd * xmultiplier)), yposition);
+	xmultiplier++;
+
+	tutlett[5].setFont(tuttext);
+	tutlett[5].setString("F");
+	tutlett[5].setCharacterSize(15);
+	tutlett[5].setFillColor(sf::Color::Red);
+	tutlett[5].setPosition((xposition + (xadd * xmultiplier)), yposition);
+	xmultiplier++;
+
+	tutlett[6].setFont(tuttext);
+	tutlett[6].setString("G");
+	tutlett[6].setCharacterSize(15);
+	tutlett[6].setFillColor(sf::Color::Red);
+	tutlett[6].setPosition((xposition + (xadd * xmultiplier)), yposition);
+	xmultiplier++;
+
+	tutlett[7].setFont(tuttext);
+	tutlett[7].setString("Space");
+	tutlett[7].setCharacterSize(8);
+	tutlett[7].setFillColor(sf::Color::Red);
+	tutlett[7].setPosition((xposition + (xadd * xmultiplier)- 10), yposition + 5);
+	xmultiplier++;
+
+	tutlett[8].setFont(tuttext);
+	tutlett[8].setString("J");
+	tutlett[8].setCharacterSize(15);
+	tutlett[8].setFillColor(sf::Color::Red);
+	tutlett[8].setPosition((xposition + (xadd * xmultiplier)), yposition);
+	xmultiplier++;
+
+	tutlett[9].setFont(tuttext);
+	tutlett[9].setString("K");
+	tutlett[9].setCharacterSize(15);
+	tutlett[9].setFillColor(sf::Color::Red);
+	tutlett[9].setPosition((xposition + (xadd * xmultiplier)), yposition);
+	xmultiplier++;
+
+	tutlett[10].setFont(tuttext);
+	tutlett[10].setString("L");
+	tutlett[10].setCharacterSize(15);
+	tutlett[10].setFillColor(sf::Color::Red);
+	tutlett[10].setPosition((xposition + (xadd * xmultiplier)), yposition);
+	xmultiplier++;
+
+	tutlett[11].setFont(tuttext);
+	tutlett[11].setString("/");
+	tutlett[11].setCharacterSize(15);
+	tutlett[11].setFillColor(sf::Color::Red);
+	tutlett[11].setPosition((xposition + (xadd * xmultiplier)), yposition);
+	xmultiplier++;
+
+	tutlett[12].setFont(tuttext);
+	tutlett[12].setString("'");
+	tutlett[12].setCharacterSize(15);
+	tutlett[12].setFillColor(sf::Color::Red);
+	tutlett[12].setPosition((xposition + (xadd * xmultiplier)), yposition);
+	xmultiplier++;
+
+	tutlett[13].setFont(tuttext);
+	tutlett[13].setString("]");
+	tutlett[13].setCharacterSize(15);
+	tutlett[13].setFillColor(sf::Color::Red);
+	tutlett[13].setPosition((xposition + (xadd * xmultiplier)), yposition);
+	xmultiplier++;
+
+	tutlett[14].setFont(tuttext);
+	tutlett[14].setString("RSlash");
+	tutlett[14].setCharacterSize(9);
+	tutlett[14].setFillColor(sf::Color::Red);
+	tutlett[14].setPosition((xposition + (xadd * xmultiplier) - 10), yposition + 5);
+	xmultiplier++;
+
+	tutlett[15].setFont(tuttext);
+	tutlett[15].setString("Back");
+	tutlett[15].setCharacterSize(9);
+	tutlett[15].setFillColor(sf::Color::Red);
+	tutlett[15].setPosition((xposition + (xadd * xmultiplier) - 5), yposition + 5);
+	xmultiplier++;
+
+	tutlett[16].setFont(tuttext);
+	tutlett[16].setString("Del");
+	tutlett[16].setCharacterSize(10);
+	tutlett[16].setFillColor(sf::Color::Red);
+	tutlett[16].setPosition((xposition + (xadd * xmultiplier) - 5), yposition + 5);
+	xmultiplier++;
+
+	tutlett[17].setFont(tuttext);
+	tutlett[17].setString("1");
+	tutlett[17].setCharacterSize(10);
+	tutlett[17].setFillColor(sf::Color::Red);
+	tutlett[17].setPosition(698.f,438.f);
+
+	tutlett[18].setFont(tuttext);
+	tutlett[18].setString("2");
+	tutlett[18].setCharacterSize(10);
+	tutlett[18].setFillColor(sf::Color::Red);
+	tutlett[18].setPosition(740.f, 438.f);
+
+	tutlett[19].setFont(tuttext);
+	tutlett[19].setString("3");
+	tutlett[19].setCharacterSize(10);
+	tutlett[19].setFillColor(sf::Color::Red);
+	tutlett[19].setPosition(802.f, 438.f);
+
+	tutlett[20].setFont(tuttext);
+	tutlett[20].setString("4");
+	tutlett[20].setCharacterSize(10);
+	tutlett[20].setFillColor(sf::Color::Red);
+	tutlett[20].setPosition(840.f, 438.f);
+
+	tutlett[21].setFont(tuttext);
+	tutlett[21].setString("5");
+	tutlett[21].setCharacterSize(10);
+	tutlett[21].setFillColor(sf::Color::Red);
+	tutlett[21].setPosition(880.f, 438.f);
+
+	tutlett[22].setFont(tuttext);
+	tutlett[22].setString("6");
+	tutlett[22].setCharacterSize(10);
+	tutlett[22].setFillColor(sf::Color::Red);
+	tutlett[22].setPosition(943.f, 438.f);
+
+	tutlett[23].setFont(tuttext);
+	tutlett[23].setString("7");
+	tutlett[23].setCharacterSize(10);
+	tutlett[23].setFillColor(sf::Color::Red);
+	tutlett[23].setPosition(985.f, 438.f);
+
+	tutlett[24].setFont(tuttext);
+	tutlett[24].setString("8");
+	tutlett[24].setCharacterSize(10);
+	tutlett[24].setFillColor(sf::Color::Red);
+	tutlett[24].setPosition(1047.f, 438.f);
+
+	tutlett[25].setFont(tuttext);
+	tutlett[25].setString("9");
+	tutlett[25].setCharacterSize(10);
+	tutlett[25].setFillColor(sf::Color::Red);
+	tutlett[25].setPosition(1085.f, 438.f);
+
+	tutlett[26].setFont(tuttext);
+	tutlett[26].setString("0");
+	tutlett[26].setCharacterSize(10);
+	tutlett[26].setFillColor(sf::Color::Red);
+	tutlett[26].setPosition(1123.f, 438.f);
+
+	tutlett[27].setFont(tuttext);
+	tutlett[27].setString("-");
+	tutlett[27].setCharacterSize(10);
+	tutlett[27].setFillColor(sf::Color::Red);
+	tutlett[27].setPosition(1188.f, 438.f);
+
+	tutlett[28].setFont(tuttext);
+	tutlett[28].setString("=");
+	tutlett[28].setCharacterSize(10);
+	tutlett[28].setFillColor(sf::Color::Red);
+	tutlett[28].setPosition(1230.f, 438.f);
 
 }
 
@@ -533,6 +729,7 @@ void Pianocontrols(Pianokeys& see, Pianosounds& hear, sf::Event& event)
 			{
 				hear.timer = hear.clocks.getElapsedTime();
 				count = hear.timer.asSeconds();
+				cout << count << endl;
 			}
 			hear.recorder.start();
 		}
@@ -565,52 +762,107 @@ Purpose: Create the tutorial button
 
 */
 
-void Buttons(Pianokeys& see, int& mousepositionx, int& mousepositiony)
+void Pianokeys::Buttons(Pianokeys& see, int& mousepositionx, int& mousepositiony, sf::RenderWindow& window, sf::Text* tutlett)
 {
-	sf::Event tutorialevent;
 	sf::Mouse mouse;
 
-	see.button.setTextureRect(sf::IntRect(8, 10, 200, 100));
-	see.button.setPosition(sf::Vector2f(800.f, 100.f));
 
+	see.button.setTextureRect(sf::IntRect(8, 10, 200, 100));
+	see.button.setPosition(sf::Vector2f(1086.f, 280.f));
 
 	//to detect if the mouse is over the button so it can change to a different text color
-	if (mousepositionx >= 800 && mousepositionx <= 1000 && mousepositiony >= 100 && mousepositiony <= 200)
+	if (mousepositionx >= 1085 && mousepositionx <= 1257 && mousepositiony >= 299 && mousepositiony <= 335)
 	{
 		see.button.setTexture(see.buttonmouseover);
 
-		//to detect a left click and it will open up a new window 
-		if (mouse.isButtonPressed(mouse.Left))
-		{
-			sf::RenderWindow tutorialW(sf::VideoMode(640, 480), "Tutorial");
+			window.draw(tutlett[0]);
+			window.draw(tutlett[1]);
+			window.draw(tutlett[2]);
+			window.draw(tutlett[3]);
+			window.draw(tutlett[4]);
+			window.draw(tutlett[5]);
+			window.draw(tutlett[6]);
+			window.draw(tutlett[7]);
+			window.draw(tutlett[8]);
+			window.draw(tutlett[9]);
+			window.draw(tutlett[10]);
+			window.draw(tutlett[11]);
+			window.draw(tutlett[12]);
+			window.draw(tutlett[13]);
+			window.draw(tutlett[14]);
+			window.draw(tutlett[15]);
+			window.draw(tutlett[16]);
+			window.draw(tutlett[17]);
+			window.draw(tutlett[18]);
+			window.draw(tutlett[19]);
+			window.draw(tutlett[20]);
+			window.draw(tutlett[21]);
+			window.draw(tutlett[22]);
+			window.draw(tutlett[23]);
+			window.draw(tutlett[24]);
+			window.draw(tutlett[25]);
+			window.draw(tutlett[26]);
+			window.draw(tutlett[27]);
+			window.draw(tutlett[28]);
+			window.draw(tutlett[29]);
+			
 
-			while (tutorialW.isOpen())
+			cout << click << endl;
+
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && click != 1)
 			{
-				while (tutorialW.pollEvent(tutorialevent))
-				{
-					if (!see.Mascot.loadFromFile("sprites/Mascot.png"))
-						cout << "Error" << endl;
-					see.GameM.setTexture(see.Mascot);
-					see.GameM.setTextureRect(sf::IntRect(10, 10, 30, 200));
-					see.GameM.setPosition(sf::Vector2f(0, 0));
-
-
-					if (tutorialevent.type == sf::Event::Closed)
-						tutorialW.close();
-				}
-				tutorialW.clear();
-				tutorialW.draw(see.GameM);
-				tutorialW.display();
+				click = 1;
 			}
-		}
+	
 	}
 	else
-	{
 		see.button.setTexture(see.buttonlooks);
+	
+	//clear the keyboard layout
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Right) && click == 1)
+	{
+		click = 2;
+		window.clear();
+		return;
 	}
 
-}
+	//this make it so the piano key layout stays on the screen
+	if (click == 1)
+	{
+		window.draw(tutlett[0]);
+		window.draw(tutlett[1]);
+		window.draw(tutlett[2]);
+		window.draw(tutlett[3]);
+		window.draw(tutlett[4]);
+		window.draw(tutlett[5]);
+		window.draw(tutlett[6]);
+		window.draw(tutlett[7]);
+		window.draw(tutlett[8]);
+		window.draw(tutlett[9]);
+		window.draw(tutlett[10]);
+		window.draw(tutlett[11]);
+		window.draw(tutlett[12]);
+		window.draw(tutlett[13]);
+		window.draw(tutlett[14]);
+		window.draw(tutlett[15]);
+		window.draw(tutlett[16]);
+		window.draw(tutlett[17]);
+		window.draw(tutlett[18]);
+		window.draw(tutlett[19]);
+		window.draw(tutlett[20]);
+		window.draw(tutlett[21]);
+		window.draw(tutlett[22]);
+		window.draw(tutlett[23]);
+		window.draw(tutlett[24]);
+		window.draw(tutlett[25]);
+		window.draw(tutlett[26]);
+		window.draw(tutlett[27]);
+		window.draw(tutlett[28]);
+		window.draw(tutlett[29]);
 
+	}
+}
+//
 //int Pianokeys::Pianomovement(float& time, float &multiply)
 //{
 //	if (time >= multiply)

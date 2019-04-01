@@ -26,6 +26,10 @@ public:
 	sf::Sprite key[17];
 	sf::Sprite bkey[12];
 	sf::Sprite square;
+
+	int click;
+
+	void Buttons(Pianokeys& see, int& mouseposition, int& mousepositiony, sf::RenderWindow& window, sf::Text* tutlett);
 };
 
 class Pianosounds
@@ -43,9 +47,7 @@ public:
 void Sprite(Pianokeys& see);
 void Loader(Pianokeys& see);
 void SoundL(Pianosounds& hear);
-void TextLoader(sf::Text& letters, sf::Font& style);
+void TextLoader(sf::Text& letters, sf::Font& style, sf::Text *tutlett, sf::Font& tuttext);
 void PianoDrawing(sf::RenderWindow& window, Pianokeys& see);
 void Pianocontrols(Pianokeys& see, Pianosounds& hear, sf::Event& event);
-void Buttons(Pianokeys& see, int& mouseposition, int& mousepositiony);
-
 #endif
