@@ -114,6 +114,7 @@ void TextLoader(sf::Text& letters, sf::Font& style, sf::Text* tutlett, sf::Font&
 	// set the text style
 	letters.setStyle(sf::Text::Bold | sf::Text::Underlined);
 
+	//setting control layout for white keys
 	tutlett[0].setFont(tuttext);
 	tutlett[0].setString("Tab");
 	tutlett[0].setCharacterSize(15);
@@ -165,7 +166,7 @@ void TextLoader(sf::Text& letters, sf::Font& style, sf::Text* tutlett, sf::Font&
 	tutlett[7].setString("Space");
 	tutlett[7].setCharacterSize(8);
 	tutlett[7].setFillColor(sf::Color::Red);
-	tutlett[7].setPosition((xposition + (xadd * xmultiplier)- 10), yposition + 5);
+	tutlett[7].setPosition((xposition + (xadd * xmultiplier) - 10), yposition + 5);
 	xmultiplier++;
 
 	tutlett[8].setFont(tuttext);
@@ -231,11 +232,13 @@ void TextLoader(sf::Text& letters, sf::Font& style, sf::Text* tutlett, sf::Font&
 	tutlett[16].setPosition((xposition + (xadd * xmultiplier) - 5), yposition + 5);
 	xmultiplier++;
 
+
+	//setting control layout for black keys
 	tutlett[17].setFont(tuttext);
 	tutlett[17].setString("1");
 	tutlett[17].setCharacterSize(10);
 	tutlett[17].setFillColor(sf::Color::Red);
-	tutlett[17].setPosition(698.f,438.f);
+	tutlett[17].setPosition(698.f, 438.f);
 
 	tutlett[18].setFont(tuttext);
 	tutlett[18].setString("2");
@@ -522,7 +525,7 @@ Purpose: Set the color back to normal if there are no key pressed
 void Pianocontrols(Pianokeys& see, Pianosounds& hear, sf::Event& event)
 {
 	float count = 0.0; // decalre count for the timer method
-	
+
 	if (event.type == sf::Event::KeyReleased == true)
 	{
 		//If no key is pressed, all piano keys are white
@@ -733,7 +736,7 @@ void Pianocontrols(Pianokeys& see, Pianosounds& hear, sf::Event& event)
 			}
 			hear.recorder.start();
 		}
-			break;
+		break;
 
 		case sf::Keyboard::LControl:
 		{
@@ -775,50 +778,51 @@ void Pianokeys::Buttons(Pianokeys& see, int& mousepositionx, int& mousepositiony
 	{
 		see.button.setTexture(see.buttonmouseover);
 
-			window.draw(tutlett[0]);
-			window.draw(tutlett[1]);
-			window.draw(tutlett[2]);
-			window.draw(tutlett[3]);
-			window.draw(tutlett[4]);
-			window.draw(tutlett[5]);
-			window.draw(tutlett[6]);
-			window.draw(tutlett[7]);
-			window.draw(tutlett[8]);
-			window.draw(tutlett[9]);
-			window.draw(tutlett[10]);
-			window.draw(tutlett[11]);
-			window.draw(tutlett[12]);
-			window.draw(tutlett[13]);
-			window.draw(tutlett[14]);
-			window.draw(tutlett[15]);
-			window.draw(tutlett[16]);
-			window.draw(tutlett[17]);
-			window.draw(tutlett[18]);
-			window.draw(tutlett[19]);
-			window.draw(tutlett[20]);
-			window.draw(tutlett[21]);
-			window.draw(tutlett[22]);
-			window.draw(tutlett[23]);
-			window.draw(tutlett[24]);
-			window.draw(tutlett[25]);
-			window.draw(tutlett[26]);
-			window.draw(tutlett[27]);
-			window.draw(tutlett[28]);
-			window.draw(tutlett[29]);
-			
+		window.draw(tutlett[0]);
+		window.draw(tutlett[1]);
+		window.draw(tutlett[2]);
+		window.draw(tutlett[3]);
+		window.draw(tutlett[4]);
+		window.draw(tutlett[5]);
+		window.draw(tutlett[6]);
+		window.draw(tutlett[7]);
+		window.draw(tutlett[8]);
+		window.draw(tutlett[9]);
+		window.draw(tutlett[10]);
+		window.draw(tutlett[11]);
+		window.draw(tutlett[12]);
+		window.draw(tutlett[13]);
+		window.draw(tutlett[14]);
+		window.draw(tutlett[15]);
+		window.draw(tutlett[16]);
+		window.draw(tutlett[17]);
+		window.draw(tutlett[18]);
+		window.draw(tutlett[19]);
+		window.draw(tutlett[20]);
+		window.draw(tutlett[21]);
+		window.draw(tutlett[22]);
+		window.draw(tutlett[23]);
+		window.draw(tutlett[24]);
+		window.draw(tutlett[25]);
+		window.draw(tutlett[26]);
+		window.draw(tutlett[27]);
+		window.draw(tutlett[28]);
+		window.draw(tutlett[29]);
 
-			cout << click << endl;
 
-			if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && click != 1)
-			{
-				click = 1;
-			}
-	
+		cout << click << endl;
+
+		//set the click variable to 1. this make it so it will appear on the screen 
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && click != 1)
+		{
+			click = 1;
+		}
+
 	}
 	else
 		see.button.setTexture(see.buttonlooks);
-	
-	//clear the keyboard layout
+
+	//clear the keyboard layout and reset the click variable to 2 so it wouldn't draw till a left click has happen
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Right) && click == 1)
 	{
 		click = 2;
