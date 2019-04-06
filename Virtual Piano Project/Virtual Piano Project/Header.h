@@ -16,6 +16,8 @@ public:
 	sf::Texture graykey;
 	sf::Texture gradientkey;
 
+	sf::Texture title;
+	sf::Sprite topleft;
 
 	sf::Texture buttonlooks;
 	sf::Texture buttonmouseover;
