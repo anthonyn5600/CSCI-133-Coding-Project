@@ -1,6 +1,6 @@
 
-#ifndef MEMBERSHIP_H
-#define MEMBERSHIP_H
+#ifndef VIRTUAL_H
+#define VIRTUAL_H
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include <iostream>
