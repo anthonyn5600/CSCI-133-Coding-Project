@@ -15,16 +15,16 @@ public:
 	sf::Texture btexturekey;
 	sf::Texture graykey;
 	sf::Texture gradientkey;
-
-	sf::Texture title;
-	sf::Sprite topleft;
-
 	sf::Texture buttonlooks;
 	sf::Texture buttonmouseover;
-	sf::Sprite button;
-	sf::Texture Mascot;
-	sf::Sprite GameM;
+	sf::Texture title;
+	sf::Texture headphone;
+	//sf::Texture Mascot; to be used
 
+	sf::Sprite middle;
+	sf::Sprite topleft;
+	sf::Sprite button;
+	sf::Sprite GameM;
 	sf::Sprite key[17];
 	sf::Sprite bkey[12];
 	sf::Sprite square;

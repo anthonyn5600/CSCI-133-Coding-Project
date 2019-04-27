@@ -319,6 +319,9 @@ void Loader(Pianokeys &see)
 	if (!see.title.loadFromFile("sprites/title1.png"))
 		cout << "Error in loading textures \n";
 
+	if (!see.headphone.loadFromFile("sprites/headphone.png"))
+		cout << "Error in loading textures \n";
+
 }
 
 /*SoundL
@@ -498,6 +501,7 @@ void PianoDrawing(sf::RenderWindow& window, Pianokeys &see)
 
 	window.draw(see.button);
 	window.draw(see.topleft);
+	window.draw(see.middle);
 
 }
 
@@ -746,8 +750,7 @@ void Pianocontrols(Pianokeys& see, Pianosounds& hear, sf::Event& event)
 /*Buttons
 ===========================================
 Purpose: Create the tutorial button
-		 When the button is clicked on, a new window is popped up showing the tutorial
-
+		 Create the keyboard layout for the program
 */
 
 void Pianokeys::Buttons(Pianokeys& see, int& mousepositionx, int& mousepositiony, sf::RenderWindow& window, sf::Text* tutlett)

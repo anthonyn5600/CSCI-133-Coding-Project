@@ -16,7 +16,7 @@ void Sprite(Pianokeys &see)
 	int whiterecty = 250;
 
 	int blackrectx = 43;
-	int blackrecty = 160;
+	int blackrecty = 150;
 
 	//int whiterectx = 50;
 	//int whiterecty = 200;
@@ -144,6 +144,10 @@ void Sprite(Pianokeys &see)
 	see.bkey[11].setPosition(sf::Vector2f((xcoord + (xadd * 15)) + 30, yheight));
 
 	see.topleft.setTexture(see.title);
-	see.topleft.setTextureRect(sf::IntRect(0, 0, 470, 200));
-	see.topleft.setPosition(sf::Vector2f(0.f,0.f));
+	see.topleft.setTextureRect(sf::IntRect(0, 0, 470, 120));
+	see.topleft.setPosition(sf::Vector2f(730.f,0.f));
+
+	see.middle.setTexture(see.headphone);
+	see.middle.setTextureRect(sf::IntRect(0, 0, 292, 242));
+	see.middle.setPosition(sf::Vector2f(823.f, 150.f));
 }
