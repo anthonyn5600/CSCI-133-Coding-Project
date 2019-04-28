@@ -34,7 +34,7 @@ int main()
 	int mouseposx;
 	int mouseposy;
 	int click = 0;
-	bool pianogame = false;
+	bool pianogame = true;
 
 	//calls the Sprite function. You can this function in the 
 	//piano_keys.cpp
