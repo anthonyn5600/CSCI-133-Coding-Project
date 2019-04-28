@@ -92,7 +92,11 @@ int main()
 		{
 			if (mouseposx >= 1801 && mouseposx <= 1882 && mouseposy >= 46 && mouseposy <= 128)
 			{
-				window.close();
+				if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+				{
+					window.close();
+				}
+
 			}
 			//calls the pianodrawing dunction.
 			see.PianoDrawing(window);
