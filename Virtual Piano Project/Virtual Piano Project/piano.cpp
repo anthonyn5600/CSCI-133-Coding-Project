@@ -1,4 +1,4 @@
-#include "Header.h"
+#include "piano.h"
 
 int main()
 {
@@ -17,20 +17,32 @@ int main()
 	sf::Font font;
 	sf::Font tuttext;
 
+
+	sf::Clock clocks;
+	sf::Time timer;
+	sf::Mouse mouse;
+
 	//Pianokeys and Pianosounds are classes define in
 	//the Header.h 
 	Pianokeys see;
 	Pianosounds hear;
-
+	Main_menu start;
 
 	string changer = "sprites/keyboard.gif";
 
+
+	int mouseposx;
+	int mouseposy;
+	int click = 0;
+	bool pianogame = false;
+
 	//calls the Sprite function. You can this function in the 
 	//piano_keys.cpp
-	Sprite(see);
+	see.Sprite();
 
+	start.Mainmenu();
 	//calls the SoundL function.
-	SoundL(hear);
+	hear.SoundL();
 
 	//load the text font files
 	font.loadFromFile("fonts/Julietta-Messie-Demo.otf");
@@ -39,53 +51,367 @@ int main()
 	//Prevent spam of holding down a key
 	window.setKeyRepeatEnabled(false);
 
-	sf::Clock clocks;
-	sf::Time timer;
-	sf::Mouse mouse;
-
-	int mouseposx;
-	int mouseposy;
-	int click = 0;
 
 	while (window.isOpen())
 	{
 		while (window.pollEvent(event))
 		{
-			//calls the loader function
-			Loader(see);
-			//calls the textloader function
-			TextLoader(text, font, tutlett, tuttext);
-
-
 			mouseposx = mouse.getPosition(window).x;
 			mouseposy = mouse.getPosition(window).y;
 
 			if (event.type == sf::Event::Closed)
 				window.close();
 
-
-
 			cout << mouse.getPosition(window).x << endl;
 
 			cout << mouse.getPosition(window).y << endl;
-			//calls the pianocontrols function
-			Pianocontrols(see, hear, event);
+
+			if (pianogame == true)
+			{
+				//calls the loader function
+				see.Loader();
+
+				//calls the textloader function
+				TextLoader(text, font, tutlett, tuttext);
+				//calls the pianocontrols function
+				Pianocontrols(see, hear, event);
+			}
+			else if (pianogame == false)
+				start.Loadformain();
 		}
 
 		window.clear(sf::Color::Black);
 
-		//calls the pianodrawing dunction.
-		PianoDrawing(window, see);
+		if (pianogame == true)
+		{
+			//calls the pianodrawing dunction.
+			see.PianoDrawing(window);
 
-		window.draw(text);
+			window.draw(text);
 
-		//calls the button function
-		see.Buttons(see, mouseposx, mouseposy, window, tutlett);
+			//calls the button function
+			see.Buttons(mouseposx, mouseposy, window, tutlett);
+		}
 
+		if (pianogame == false)
+		{
+			window.draw(start.menu);
+		}
 		window.display();
 	}
-
 	return 0;
+}
+
+
+/*Loader
+===========================================
+Purpose: Load in the image files from the folder.
+*/
+void Pianokeys::Loader()
+{
+	if (!texturekey.loadFromFile("sprites/key2.gif"))
+		cout << "Error in loading textures \n";
+
+	if (!btexturekey.loadFromFile("sprites/blackkey2.gif"))
+		cout << "Error in loading textures \n";
+
+	if (!gradientkey.loadFromFile("sprites/Eclipse_master.gif"))
+		cout << "Error in loading textures \n";
+
+	if (!graykey.loadFromFile("sprites/graykey.gif"))
+		cout << "Error in loading textures \n";
+
+	if (!buttonlooks.loadFromFile("sprites/tutorial_text.png"))
+		cout << "Error in loading textures \n";
+
+	if (!title.loadFromFile("sprites/title1.png"))
+		cout << "Error in loading textures \n";
+
+	if (!headphone.loadFromFile("sprites/headphone.png"))
+		cout << "Error in loading textures \n";
+
+}
+
+/*Buttons
+===========================================
+Purpose: Create the tutorial button
+		 Create the keyboard layout for the program
+*/
+void Pianokeys::Buttons(int& mousepositionx, int& mousepositiony, sf::RenderWindow& window, sf::Text* tutlett)
+{
+	sf::Mouse mouse;
+
+
+	button.setTextureRect(sf::IntRect(0, 0, 500, 100));
+	button.setPosition(sf::Vector2f(1040.f, 400.f));
+
+	//to detect if the mouse is over the button
+	if (mousepositionx >= 1159 && mousepositionx <= 1412 && mousepositiony >= 411 && mousepositiony <= 496)
+	{
+			window.draw(tutlett[0]);
+			window.draw(tutlett[1]);
+			window.draw(tutlett[2]);
+			window.draw(tutlett[3]);
+			window.draw(tutlett[4]);
+			window.draw(tutlett[5]);
+			window.draw(tutlett[6]);
+			window.draw(tutlett[7]);
+			window.draw(tutlett[8]);
+			window.draw(tutlett[9]);
+			window.draw(tutlett[10]);
+			window.draw(tutlett[11]);
+			window.draw(tutlett[12]);
+			window.draw(tutlett[13]);
+			window.draw(tutlett[14]);
+			window.draw(tutlett[15]);
+			window.draw(tutlett[16]);
+			window.draw(tutlett[17]);
+			window.draw(tutlett[18]);
+			window.draw(tutlett[19]);
+			window.draw(tutlett[20]);
+			window.draw(tutlett[21]);
+			window.draw(tutlett[22]);
+			window.draw(tutlett[23]);
+			window.draw(tutlett[24]);
+			window.draw(tutlett[25]);
+			window.draw(tutlett[26]);
+			window.draw(tutlett[27]);
+			window.draw(tutlett[28]);
+			window.draw(tutlett[29]);
+
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && click != 1)
+			{
+				click = 1;
+			}
+	
+	}
+	else
+		button.setTexture(buttonlooks);
+	
+	//clear the keyboard layout
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Right) && click == 1)
+	{
+		click = 2;
+		window.clear();
+		return;
+	}
+
+	//this make it so the piano key layout stays on the screen
+	if (click == 1)
+	{
+		window.draw(tutlett[0]);
+		window.draw(tutlett[1]);
+		window.draw(tutlett[2]);
+		window.draw(tutlett[3]);
+		window.draw(tutlett[4]);
+		window.draw(tutlett[5]);
+		window.draw(tutlett[6]);
+		window.draw(tutlett[7]);
+		window.draw(tutlett[8]);
+		window.draw(tutlett[9]);
+		window.draw(tutlett[10]);
+		window.draw(tutlett[11]);
+		window.draw(tutlett[12]);
+		window.draw(tutlett[13]);
+		window.draw(tutlett[14]);
+		window.draw(tutlett[15]);
+		window.draw(tutlett[16]);
+		window.draw(tutlett[17]);
+		window.draw(tutlett[18]);
+		window.draw(tutlett[19]);
+		window.draw(tutlett[20]);
+		window.draw(tutlett[21]);
+		window.draw(tutlett[22]);
+		window.draw(tutlett[23]);
+		window.draw(tutlett[24]);
+		window.draw(tutlett[25]);
+		window.draw(tutlett[26]);
+		window.draw(tutlett[27]);
+		window.draw(tutlett[28]);
+		window.draw(tutlett[29]);
+
+	}
+}
+
+/*PianoDrawing
+===========================================
+Purpose: Draws the key for the piano
+*/
+void Pianokeys::PianoDrawing(sf::RenderWindow& window)
+{
+	//This is so it actually draw in the window
+	window.draw(key[0]);
+	window.draw(key[1]);
+	window.draw(key[2]);
+	window.draw(key[3]);
+	window.draw(key[4]);
+	window.draw(key[5]);
+	window.draw(key[6]);
+	window.draw(key[7]);
+	window.draw(key[8]);
+	window.draw(key[9]);
+	window.draw(key[10]);
+	window.draw(key[11]);
+	window.draw(key[12]);
+	window.draw(key[13]);
+	window.draw(key[14]);
+	window.draw(key[15]);
+	window.draw(key[16]);
+
+	window.draw(bkey[0]);
+	window.draw(bkey[1]);
+	window.draw(bkey[2]);
+	window.draw(bkey[3]);
+	window.draw(bkey[4]);
+	window.draw(bkey[5]);
+	window.draw(bkey[6]);
+	window.draw(bkey[7]);
+	window.draw(bkey[8]);
+	window.draw(bkey[9]);
+	window.draw(bkey[10]);
+	window.draw(bkey[11]);
+
+	window.draw(button);
+	window.draw(topleft);
+	window.draw(middle);
+
+}
+
+/*SoundL
+===========================================
+Purpose: Uses the Pianosounds class
+		 Set the buffer array for each sound array
+		 Load in the sound from the folder.
+
+WARNING: SFML won't allow .mp3 format to be imported
+*/
+void Pianosounds::SoundL()
+{
+	//this is to declare the sound variable
+	sound[0].setBuffer(buffer[0]);
+	sound[1].setBuffer(buffer[1]);
+	sound[2].setBuffer(buffer[2]);
+	sound[3].setBuffer(buffer[3]);
+	sound[4].setBuffer(buffer[4]);
+	sound[5].setBuffer(buffer[5]);
+	sound[6].setBuffer(buffer[6]);
+	sound[7].setBuffer(buffer[7]);
+	sound[8].setBuffer(buffer[8]);
+	sound[9].setBuffer(buffer[9]);
+	sound[10].setBuffer(buffer[10]);
+	sound[11].setBuffer(buffer[11]);
+	sound[12].setBuffer(buffer[12]);
+	sound[13].setBuffer(buffer[13]);
+	sound[14].setBuffer(buffer[14]);
+	sound[15].setBuffer(buffer[15]);
+	sound[16].setBuffer(buffer[16]);
+
+	//setting black keys sound variable
+	sound[17].setBuffer(buffer[17]);
+	sound[18].setBuffer(buffer[18]);
+	sound[19].setBuffer(buffer[19]);
+	sound[20].setBuffer(buffer[20]);
+	sound[21].setBuffer(buffer[21]);
+	sound[22].setBuffer(buffer[22]);
+	sound[23].setBuffer(buffer[23]);
+	sound[24].setBuffer(buffer[24]);
+	sound[25].setBuffer(buffer[25]);
+	sound[26].setBuffer(buffer[26]);
+	sound[27].setBuffer(buffer[27]);
+	sound[28].setBuffer(buffer[28]);
+
+	//load in the sound
+
+	if (!buffer[0].loadFromFile("sounds/c3.wav"))
+		cout << "Error in loading sound \n";
+
+	if (!buffer[1].loadFromFile("sounds/d3.wav"))
+		cout << "Error in loading sound \n";
+
+	if (!buffer[2].loadFromFile("sounds/e3.wav"))
+		cout << "Error in loading sound \n";
+
+	if (!buffer[3].loadFromFile("sounds/f3.wav"))
+		cout << "Error in loading sound \n";
+
+	if (!buffer[4].loadFromFile("sounds/g3.wav"))
+		cout << "Error in loading sound \n";
+
+	if (!buffer[5].loadFromFile("sounds/a3.wav"))
+		cout << "Error in loading sound \n";
+
+	if (!buffer[6].loadFromFile("sounds/b3.wav"))
+		cout << "Error in loading sound \n";
+
+	if (!buffer[7].loadFromFile("sounds/c4.wav"))
+		cout << "Error in loading sound \n";
+
+	if (!buffer[8].loadFromFile("sounds/d4.wav"))
+		cout << "Error in loading sound \n";
+
+	if (!buffer[9].loadFromFile("sounds/e4.wav"))
+		cout << "Error in loading sound \n";
+
+	if (!buffer[10].loadFromFile("sounds/f4.wav"))
+		cout << "Error in loading sound \n";
+
+	if (!buffer[11].loadFromFile("sounds/g4.wav"))
+		cout << "Error in loading sound \n";
+
+	if (!buffer[12].loadFromFile("sounds/a4.wav"))
+		cout << "Error in loading sound \n";
+
+	if (!buffer[13].loadFromFile("sounds/b4.wav"))
+		cout << "Error in loading sound \n";
+
+	if (!buffer[14].loadFromFile("sounds/c5.wav"))
+		cout << "Error in loading sound \n";
+
+	if (!buffer[15].loadFromFile("sounds/d5.wav"))
+		cout << "Error in loading sound \n";
+
+	if (!buffer[16].loadFromFile("sounds/e5.wav"))
+		cout << "Error in loading sound \n";
+
+	//loading for black keys
+	if (!buffer[17].loadFromFile("sounds/c3#.wav"))
+		cout << "Error in loading sound \n";
+
+	if (!buffer[18].loadFromFile("sounds/d3#.wav"))
+		cout << "Error in loading sound \n";
+
+	if (!buffer[19].loadFromFile("sounds/f3#.wav"))
+		cout << "Error in loading sound \n";
+
+	if (!buffer[20].loadFromFile("sounds/g3#.wav"))
+		cout << "Error in loading sound \n";
+
+	if (!buffer[21].loadFromFile("sounds/a3#.wav"))
+		cout << "Error in loading sound \n";
+
+	if (!buffer[22].loadFromFile("sounds/c4#.wav"))
+		cout << "Error in loading sound \n";
+
+	if (!buffer[23].loadFromFile("sounds/d4#.wav"))
+		cout << "Error in loading sound \n";
+
+	if (!buffer[24].loadFromFile("sounds/f4#.wav"))
+		cout << "Error in loading sound \n";
+
+	if (!buffer[25].loadFromFile("sounds/g4#.wav"))
+		cout << "Error in loading sound \n";
+
+	if (!buffer[26].loadFromFile("sounds/a4#.wav"))
+		cout << "Error in loading sound \n";
+
+	if (!buffer[27].loadFromFile("sounds/c5#.wav"))
+		cout << "Error in loading sound \n";
+
+	if (!buffer[28].loadFromFile("sounds/d5#.wav"))
+		cout << "Error in loading sound \n";
+
+	if (!recorder.isAvailable())
+		cout << "Error in loading recorder \n";
 }
 
 
@@ -295,215 +621,6 @@ void TextLoader(sf::Text& letters, sf::Font& style, sf::Text* tutlett, sf::Font&
 
 }
 
-/*Loader
-===========================================
-Purpose: Load in the image files from the folder.
-*/
-void Loader(Pianokeys &see)
-{
-	if (!see.texturekey.loadFromFile("sprites/key2.gif"))
-		cout << "Error in loading textures \n";
-
-	if (!see.btexturekey.loadFromFile("sprites/blackkey2.gif"))
-		cout << "Error in loading textures \n";
-
-	if (!see.gradientkey.loadFromFile("sprites/Eclipse_master.gif"))
-		cout << "Error in loading textures \n";
-
-	if (!see.graykey.loadFromFile("sprites/graykey.gif"))
-		cout << "Error in loading textures \n";
-
-	if (!see.buttonlooks.loadFromFile("sprites/tutorial_text.png"))
-		cout << "Error in loading textures \n";
-
-	if (!see.title.loadFromFile("sprites/title1.png"))
-		cout << "Error in loading textures \n";
-
-	if (!see.headphone.loadFromFile("sprites/headphone.png"))
-		cout << "Error in loading textures \n";
-
-}
-
-/*SoundL
-===========================================
-Purpose: Uses the Pianosounds class
-		 Set the buffer array for each sound array
-		 Load in the sound from the folder.
-
-WARNING: SFML won't allow .mp3 format to be imported
-*/
-void SoundL(Pianosounds& hear)
-{
-	//this is to declare the sound variable
-	hear.sound[0].setBuffer(hear.buffer[0]);
-	hear.sound[1].setBuffer(hear.buffer[1]);
-	hear.sound[2].setBuffer(hear.buffer[2]);
-	hear.sound[3].setBuffer(hear.buffer[3]);
-	hear.sound[4].setBuffer(hear.buffer[4]);
-	hear.sound[5].setBuffer(hear.buffer[5]);
-	hear.sound[6].setBuffer(hear.buffer[6]);
-	hear.sound[7].setBuffer(hear.buffer[7]);
-	hear.sound[8].setBuffer(hear.buffer[8]);
-	hear.sound[9].setBuffer(hear.buffer[9]);
-	hear.sound[10].setBuffer(hear.buffer[10]);
-	hear.sound[11].setBuffer(hear.buffer[11]);
-	hear.sound[12].setBuffer(hear.buffer[12]);
-	hear.sound[13].setBuffer(hear.buffer[13]);
-	hear.sound[14].setBuffer(hear.buffer[14]);
-	hear.sound[15].setBuffer(hear.buffer[15]);
-	hear.sound[16].setBuffer(hear.buffer[16]);
-
-	//setting black keys sound variable
-	hear.sound[17].setBuffer(hear.buffer[17]);
-	hear.sound[18].setBuffer(hear.buffer[18]);
-	hear.sound[19].setBuffer(hear.buffer[19]);
-	hear.sound[20].setBuffer(hear.buffer[20]);
-	hear.sound[21].setBuffer(hear.buffer[21]);
-	hear.sound[22].setBuffer(hear.buffer[22]);
-	hear.sound[23].setBuffer(hear.buffer[23]);
-	hear.sound[24].setBuffer(hear.buffer[24]);
-	hear.sound[25].setBuffer(hear.buffer[25]);
-	hear.sound[26].setBuffer(hear.buffer[26]);
-	hear.sound[27].setBuffer(hear.buffer[27]);
-	hear.sound[28].setBuffer(hear.buffer[28]);
-
-	//load in the sound
-
-	if (!hear.buffer[0].loadFromFile("sounds/c3.wav"))
-		cout << "Error in loading sound \n";
-
-	if (!hear.buffer[1].loadFromFile("sounds/d3.wav"))
-		cout << "Error in loading sound \n";
-
-	if (!hear.buffer[2].loadFromFile("sounds/e3.wav"))
-		cout << "Error in loading sound \n";
-
-	if (!hear.buffer[3].loadFromFile("sounds/f3.wav"))
-		cout << "Error in loading sound \n";
-
-	if (!hear.buffer[4].loadFromFile("sounds/g3.wav"))
-		cout << "Error in loading sound \n";
-
-	if (!hear.buffer[5].loadFromFile("sounds/a3.wav"))
-		cout << "Error in loading sound \n";
-
-	if (!hear.buffer[6].loadFromFile("sounds/b3.wav"))
-		cout << "Error in loading sound \n";
-
-	if (!hear.buffer[7].loadFromFile("sounds/c4.wav"))
-		cout << "Error in loading sound \n";
-
-	if (!hear.buffer[8].loadFromFile("sounds/d4.wav"))
-		cout << "Error in loading sound \n";
-
-	if (!hear.buffer[9].loadFromFile("sounds/e4.wav"))
-		cout << "Error in loading sound \n";
-
-	if (!hear.buffer[10].loadFromFile("sounds/f4.wav"))
-		cout << "Error in loading sound \n";
-
-	if (!hear.buffer[11].loadFromFile("sounds/g4.wav"))
-		cout << "Error in loading sound \n";
-
-	if (!hear.buffer[12].loadFromFile("sounds/a4.wav"))
-		cout << "Error in loading sound \n";
-
-	if (!hear.buffer[13].loadFromFile("sounds/b4.wav"))
-		cout << "Error in loading sound \n";
-
-	if (!hear.buffer[14].loadFromFile("sounds/c5.wav"))
-		cout << "Error in loading sound \n";
-
-	if (!hear.buffer[15].loadFromFile("sounds/d5.wav"))
-		cout << "Error in loading sound \n";
-
-	if (!hear.buffer[16].loadFromFile("sounds/e5.wav"))
-		cout << "Error in loading sound \n";
-
-	//loading for black keys
-	if (!hear.buffer[17].loadFromFile("sounds/c3#.wav"))
-		cout << "Error in loading sound \n";
-
-	if (!hear.buffer[18].loadFromFile("sounds/d3#.wav"))
-		cout << "Error in loading sound \n";
-
-	if (!hear.buffer[19].loadFromFile("sounds/f3#.wav"))
-		cout << "Error in loading sound \n";
-
-	if (!hear.buffer[20].loadFromFile("sounds/g3#.wav"))
-		cout << "Error in loading sound \n";
-
-	if (!hear.buffer[21].loadFromFile("sounds/a3#.wav"))
-		cout << "Error in loading sound \n";
-
-	if (!hear.buffer[22].loadFromFile("sounds/c4#.wav"))
-		cout << "Error in loading sound \n";
-
-	if (!hear.buffer[23].loadFromFile("sounds/d4#.wav"))
-		cout << "Error in loading sound \n";
-
-	if (!hear.buffer[24].loadFromFile("sounds/f4#.wav"))
-		cout << "Error in loading sound \n";
-
-	if (!hear.buffer[25].loadFromFile("sounds/g4#.wav"))
-		cout << "Error in loading sound \n";
-
-	if (!hear.buffer[26].loadFromFile("sounds/a4#.wav"))
-		cout << "Error in loading sound \n";
-
-	if (!hear.buffer[27].loadFromFile("sounds/c5#.wav"))
-		cout << "Error in loading sound \n";
-
-	if (!hear.buffer[28].loadFromFile("sounds/d5#.wav"))
-		cout << "Error in loading sound \n";
-
-	if (!hear.recorder.isAvailable())
-		cout << "Error in loading recorder \n";
-}
-
-/*PianoDrawing
-===========================================
-Purpose: Draws the key for the piano
-*/
-void PianoDrawing(sf::RenderWindow& window, Pianokeys &see)
-{
-	//This is so it actually draw in the window
-	window.draw(see.key[0]);
-	window.draw(see.key[1]);
-	window.draw(see.key[2]);
-	window.draw(see.key[3]);
-	window.draw(see.key[4]);
-	window.draw(see.key[5]);
-	window.draw(see.key[6]);
-	window.draw(see.key[7]);
-	window.draw(see.key[8]);
-	window.draw(see.key[9]);
-	window.draw(see.key[10]);
-	window.draw(see.key[11]);
-	window.draw(see.key[12]);
-	window.draw(see.key[13]);
-	window.draw(see.key[14]);
-	window.draw(see.key[15]);
-	window.draw(see.key[16]);
-
-	window.draw(see.bkey[0]);
-	window.draw(see.bkey[1]);
-	window.draw(see.bkey[2]);
-	window.draw(see.bkey[3]);
-	window.draw(see.bkey[4]);
-	window.draw(see.bkey[5]);
-	window.draw(see.bkey[6]);
-	window.draw(see.bkey[7]);
-	window.draw(see.bkey[8]);
-	window.draw(see.bkey[9]);
-	window.draw(see.bkey[10]);
-	window.draw(see.bkey[11]);
-
-	window.draw(see.button);
-	window.draw(see.topleft);
-	window.draw(see.middle);
-
-}
 
 /*Pianocontrols
 ===========================================
@@ -747,116 +864,17 @@ void Pianocontrols(Pianokeys& see, Pianosounds& hear, sf::Event& event)
 	}
 }
 
-/*Buttons
-===========================================
-Purpose: Create the tutorial button
-		 Create the keyboard layout for the program
-*/
-
-void Pianokeys::Buttons(Pianokeys& see, int& mousepositionx, int& mousepositiony, sf::RenderWindow& window, sf::Text* tutlett)
+void Main_menu::Mainmenu()
 {
-	sf::Mouse mouse;
 
-
-	see.button.setTextureRect(sf::IntRect(0, 0, 500, 100));
-	see.button.setPosition(sf::Vector2f(1040.f, 400.f));
-
-	//to detect if the mouse is over the button so it can change to a different text color
-	if (mousepositionx >= 1159 && mousepositionx <= 1412 && mousepositiony >= 411 && mousepositiony <= 496)
-	{
-			window.draw(tutlett[0]);
-			window.draw(tutlett[1]);
-			window.draw(tutlett[2]);
-			window.draw(tutlett[3]);
-			window.draw(tutlett[4]);
-			window.draw(tutlett[5]);
-			window.draw(tutlett[6]);
-			window.draw(tutlett[7]);
-			window.draw(tutlett[8]);
-			window.draw(tutlett[9]);
-			window.draw(tutlett[10]);
-			window.draw(tutlett[11]);
-			window.draw(tutlett[12]);
-			window.draw(tutlett[13]);
-			window.draw(tutlett[14]);
-			window.draw(tutlett[15]);
-			window.draw(tutlett[16]);
-			window.draw(tutlett[17]);
-			window.draw(tutlett[18]);
-			window.draw(tutlett[19]);
-			window.draw(tutlett[20]);
-			window.draw(tutlett[21]);
-			window.draw(tutlett[22]);
-			window.draw(tutlett[23]);
-			window.draw(tutlett[24]);
-			window.draw(tutlett[25]);
-			window.draw(tutlett[26]);
-			window.draw(tutlett[27]);
-			window.draw(tutlett[28]);
-			window.draw(tutlett[29]);
-
-			if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && click != 1)
-			{
-				click = 1;
-			}
-	
-	}
-	else
-		see.button.setTexture(see.buttonlooks);
-	
-	//clear the keyboard layout
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Right) && click == 1)
-	{
-		click = 2;
-		window.clear();
-		return;
-	}
-
-	//this make it so the piano key layout stays on the screen
-	if (click == 1)
-	{
-		window.draw(tutlett[0]);
-		window.draw(tutlett[1]);
-		window.draw(tutlett[2]);
-		window.draw(tutlett[3]);
-		window.draw(tutlett[4]);
-		window.draw(tutlett[5]);
-		window.draw(tutlett[6]);
-		window.draw(tutlett[7]);
-		window.draw(tutlett[8]);
-		window.draw(tutlett[9]);
-		window.draw(tutlett[10]);
-		window.draw(tutlett[11]);
-		window.draw(tutlett[12]);
-		window.draw(tutlett[13]);
-		window.draw(tutlett[14]);
-		window.draw(tutlett[15]);
-		window.draw(tutlett[16]);
-		window.draw(tutlett[17]);
-		window.draw(tutlett[18]);
-		window.draw(tutlett[19]);
-		window.draw(tutlett[20]);
-		window.draw(tutlett[21]);
-		window.draw(tutlett[22]);
-		window.draw(tutlett[23]);
-		window.draw(tutlett[24]);
-		window.draw(tutlett[25]);
-		window.draw(tutlett[26]);
-		window.draw(tutlett[27]);
-		window.draw(tutlett[28]);
-		window.draw(tutlett[29]);
-
-	}
+	menu.setTexture(background);
+	menu.setTextureRect(sf::IntRect(0, 0, 1914, 1080));
+	menu.setPosition(sf::Vector2f(0.f, 0.f));
 }
-//
-//int Pianokeys::Pianomovement(float& time, float &multiply)
-//{
-//	if (time >= multiply)
-//	{
-//		key[0].move(0, 0.5);
-//		bkey[0].move(0, 0.5);
-//		return multiply;
-//	}
-//	else
-//		return multiply * 0;
-//}
+
+void Main_menu::Loadformain()
+{
+	if (!background.loadFromFile("sprites/background.png"))
+		cout << "Error in loading textures \n";
+
+}
