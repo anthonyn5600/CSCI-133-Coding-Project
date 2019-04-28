@@ -26,7 +26,7 @@ int main()
 	//the Header.h 
 	Pianokeys see;
 	Pianosounds hear;
-	Main_menu start;
+	Main_Menu start;
 
 	string changer = "sprites/keyboard.gif";
 
@@ -34,15 +34,17 @@ int main()
 	int mouseposx;
 	int mouseposy;
 	int click = 0;
-	bool pianogame = true;
+	bool pianogame = false;
 
 	//calls the Sprite function. You can this function in the 
 	//piano_keys.cpp
 	see.Sprite();
 
-	start.Mainmenu();
+
 	//calls the SoundL function.
 	hear.SoundL();
+
+	start.Buttonsound();
 
 	//load the text font files
 	font.loadFromFile("fonts/Julietta-Messie-Demo.otf");
@@ -59,6 +61,7 @@ int main()
 			mouseposx = mouse.getPosition(window).x;
 			mouseposy = mouse.getPosition(window).y;
 
+
 			if (event.type == sf::Event::Closed)
 				window.close();
 
@@ -70,20 +73,27 @@ int main()
 			{
 				//calls the loader function
 				see.Loader();
-
 				//calls the textloader function
 				TextLoader(text, font, tutlett, tuttext);
 				//calls the pianocontrols function
 				Pianocontrols(see, hear, event);
 			}
 			else if (pianogame == false)
+			{
+				start.Mainmenu();
+				start.Buttonfunction(mouseposx, mouseposy, window, pianogame);
 				start.Loadformain();
+			}
 		}
 
 		window.clear(sf::Color::Black);
 
 		if (pianogame == true)
 		{
+			if (mouseposx >= 1801 && mouseposx <= 1882 && mouseposy >= 46 && mouseposy <= 128)
+			{
+				window.close();
+			}
 			//calls the pianodrawing dunction.
 			see.PianoDrawing(window);
 
@@ -96,6 +106,7 @@ int main()
 		if (pianogame == false)
 		{
 			window.draw(start.menu);
+			window.draw(start.button);
 		}
 		window.display();
 	}
@@ -130,6 +141,9 @@ void Pianokeys::Loader()
 	if (!headphone.loadFromFile("sprites/headphone.png"))
 		cout << "Error in loading textures \n";
 
+	if (!redbutton.loadFromFile("sprites/exit.png"))
+		cout << "Error in loading textures \n";
+
 }
 
 /*Buttons
@@ -139,9 +153,6 @@ Purpose: Create the tutorial button
 */
 void Pianokeys::Buttons(int& mousepositionx, int& mousepositiony, sf::RenderWindow& window, sf::Text* tutlett)
 {
-	sf::Mouse mouse;
-
-
 	button.setTextureRect(sf::IntRect(0, 0, 500, 100));
 	button.setPosition(sf::Vector2f(1040.f, 400.f));
 
@@ -274,6 +285,7 @@ void Pianokeys::PianoDrawing(sf::RenderWindow& window)
 	window.draw(button);
 	window.draw(topleft);
 	window.draw(middle);
+	window.draw(exit);
 
 }
 
@@ -864,17 +876,43 @@ void Pianocontrols(Pianokeys& see, Pianosounds& hear, sf::Event& event)
 	}
 }
 
-void Main_menu::Mainmenu()
+void Main_Menu::Mainmenu()
 {
-
 	menu.setTexture(background);
 	menu.setTextureRect(sf::IntRect(0, 0, 1914, 1080));
 	menu.setPosition(sf::Vector2f(0.f, 0.f));
+
+	button.setTexture(graybutton);
+	button.setTextureRect(sf::IntRect(0, 0, 116, 116));
+	button.setPosition(sf::Vector2f(880.f, 663.f));
 }
 
-void Main_menu::Loadformain()
+void Main_Menu::Loadformain()
 {
 	if (!background.loadFromFile("sprites/background.png"))
 		cout << "Error in loading textures \n";
+	if (!graybutton.loadFromFile("sprites/play.png"))
+		cout << "Error in loading textures \n";
+}
 
+void Main_Menu::Buttonsound()
+{
+	buttonsound.setBuffer(clickbuffer);
+
+	if (!clickbuffer.loadFromFile("sounds/clicksound.wav"))
+		cout << "Error in loading sound \n";
+
+}
+
+void Main_Menu::Buttonfunction(int& mousepositionx, int& mousepositiony, sf::RenderWindow& window, bool& pianogame)
+{
+	if (mousepositionx >= 880 && mousepositionx <= 997 && mousepositiony >= 660 && mousepositiony <= 783)
+	{
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+		{
+			buttonsound.play();
+			window.clear();
+			pianogame = true;
+		}
+	}
 }

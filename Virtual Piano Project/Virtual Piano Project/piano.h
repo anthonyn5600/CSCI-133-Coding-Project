@@ -19,8 +19,10 @@ public:
 	sf::Texture buttonmouseover;
 	sf::Texture title;
 	sf::Texture headphone;
+	sf::Texture redbutton;
 	//sf::Texture Mascot; to be used
 
+	sf::Sprite exit;
 	sf::Sprite middle;
 	sf::Sprite topleft;
 	sf::Sprite button;
@@ -51,14 +53,22 @@ public:
 	void SoundL();
 };
 
-class Main_menu
+class Main_Menu
 {
 public:
 	sf::Texture background;
+	sf::Texture graybutton;
+
+	sf::Sprite button;
 	sf::Sprite menu;
+
+	sf::SoundBuffer clickbuffer;
+	sf::Sound buttonsound;
 
 	void Mainmenu();
 	void Loadformain();
+	void Buttonfunction(int& mousepositionx, int& mousepositiony, sf::RenderWindow& window, bool& pianogame);
+	void Buttonsound();
 
 };
 

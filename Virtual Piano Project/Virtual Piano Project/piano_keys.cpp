@@ -150,4 +150,8 @@ void Pianokeys::Sprite()
 	middle.setTexture(headphone);
 	middle.setTextureRect(sf::IntRect(0, 0, 292, 242));
 	middle.setPosition(sf::Vector2f(823.f, 150.f));
+
+	exit.setTexture(redbutton);
+	exit.setTextureRect(sf::IntRect(0, 0, 87, 87));
+	exit.setPosition(sf::Vector2f(1799.f, 49.f));
 }

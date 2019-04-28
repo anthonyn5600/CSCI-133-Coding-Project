@@ -23,7 +23,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Header.h">
+    <ClInclude Include="piano.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
