@@ -44,7 +44,7 @@ int main()
 	//calls the SoundL function.
 	hear.SoundL();
 
-	start.Buttonsound();
+	start.Sound();
 
 	//load the text font files
 	font.loadFromFile("fonts/Julietta-Messie-Demo.otf");
@@ -65,9 +65,9 @@ int main()
 			if (event.type == sf::Event::Closed)
 				window.close();
 
-			//cout << mouse.getPosition(window).x << endl;
+			cout << mouse.getPosition(window).x << endl;
 
-			//cout << mouse.getPosition(window).y << endl;
+			cout << mouse.getPosition(window).y << endl;
 
 			if (pianogame == true)
 			{
@@ -111,6 +111,7 @@ int main()
 		{
 			window.draw(start.menu);
 			window.draw(start.button);
+			window.draw(start.pianomenu);
 		}
 		window.setVerticalSyncEnabled(false);
 		window.setFramerateLimit(0);
@@ -978,33 +979,45 @@ void Main_Menu::Mainmenu()
 
 	button.setTexture(graybutton);
 	button.setTextureRect(sf::IntRect(0, 0, 116, 116));
-	button.setPosition(sf::Vector2f(880.f, 663.f));
+	button.setPosition(sf::Vector2f(880.f, 550.f));
+
+	pianomenu.setTexture(piano);
+	pianomenu.setTextureRect(sf::IntRect(0, 0, 600, 160));
+	pianomenu.setPosition(sf::Vector2f(625.f, 350.f));
 }
 
 void Main_Menu::Loadformain()
 {
-	if (!background.loadFromFile("sprites/background.png"))
+	if(!background.loadFromFile("sprites/background.png"))
 		cout << "Error in loading textures \n";
-	if (!graybutton.loadFromFile("sprites/play.png"))
+	if(!graybutton.loadFromFile("sprites/play.png"))
+		cout << "Error in loading textures \n";
+	if (!piano.loadFromFile("sprites/wmenutext.png"))
 		cout << "Error in loading textures \n";
 }
 
-void Main_Menu::Buttonsound()
+void Main_Menu::Sound()
 {
 	buttonsound.setBuffer(clickbuffer);
+	music.setBuffer(menumusic);
 
 	if (!clickbuffer.loadFromFile("sounds/clicksound.wav"))
 		cout << "Error in loading sound \n";
 
+	if (!menumusic.loadFromFile("sounds/Demo2.1-AudioTrimmer.com.wav"))
+		cout << "Error in loading sound \n";
+
+	music.play();
 }
 
 void Main_Menu::Buttonfunction(int& mousepositionx, int& mousepositiony, sf::RenderWindow& window, bool& pianogame)
 {
-	if (mousepositionx >= 880 && mousepositionx <= 997 && mousepositiony >= 660 && mousepositiony <= 783)
+	if (mousepositionx >= 875 && mousepositionx <= 996 && mousepositiony >= 535 && mousepositiony <= 654)
 	{
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 		{
 			buttonsound.play();
+			music.stop();
 			window.clear();
 			pianogame = true;
 		}

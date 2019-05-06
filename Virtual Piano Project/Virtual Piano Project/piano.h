@@ -58,17 +58,22 @@ class Main_Menu
 public:
 	sf::Texture background;
 	sf::Texture graybutton;
+	sf::Texture piano;
 
 	sf::Sprite button;
 	sf::Sprite menu;
+	sf::Sprite pianomenu;
 
 	sf::SoundBuffer clickbuffer;
+	sf::SoundBuffer menumusic;
+
+	sf::Sound music;
 	sf::Sound buttonsound;
 
 	void Mainmenu();
 	void Loadformain();
 	void Buttonfunction(int& mousepositionx, int& mousepositiony, sf::RenderWindow& window, bool& pianogame);
-	void Buttonsound();
+	void Sound();
 
 };
 
