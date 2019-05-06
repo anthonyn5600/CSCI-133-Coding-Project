@@ -65,9 +65,9 @@ int main()
 			if (event.type == sf::Event::Closed)
 				window.close();
 
-			cout << mouse.getPosition(window).x << endl;
+			//cout << mouse.getPosition(window).x << endl;
 
-			cout << mouse.getPosition(window).y << endl;
+			//cout << mouse.getPosition(window).y << endl;
 
 			if (pianogame == true)
 			{
@@ -112,6 +112,8 @@ int main()
 			window.draw(start.menu);
 			window.draw(start.button);
 		}
+		window.setVerticalSyncEnabled(false);
+		window.setFramerateLimit(0);
 		window.display();
 	}
 	return 0;
@@ -450,16 +452,6 @@ void TextLoader(sf::Text& letters, sf::Font& style, sf::Text* tutlett, sf::Font&
 	float byposition = 627.f;
 
 	float yposition = 709.f;
-	// select the font
-	//letters.setFont(style); // fontg is a sf::Font
-	//// set the string to display
-	//letters.setString("Virtual Piano");
-	//// set the character size
-	//letters.setCharacterSize(100); // in pixels, not points!
-	//// set the color
-	//letters.setFillColor(sf::Color::Red);
-	//// set the text style
-	//letters.setStyle(sf::Text::Bold | sf::Text::Underlined);
 
 	tutlett[0].setFont(tuttext);
 	tutlett[0].setString("Tab");
@@ -648,44 +640,141 @@ void Pianocontrols(Pianokeys& see, Pianosounds& hear, sf::Event& event)
 {
 	float count = 0.0; // decalre count for the timer method
 	
-	if (event.type == sf::Event::KeyReleased == true)
-	{
-		//If no key is pressed, all piano keys are white
-		see.key[0].setTexture(see.texturekey);
-		see.key[1].setTexture(see.texturekey);
-		see.key[2].setTexture(see.texturekey);
-		see.key[3].setTexture(see.texturekey);
-		see.key[4].setTexture(see.texturekey);
-		see.key[5].setTexture(see.texturekey);
-		see.key[6].setTexture(see.texturekey);
-		see.key[7].setTexture(see.texturekey);
-		see.key[8].setTexture(see.texturekey);
-		see.key[9].setTexture(see.texturekey);
-		see.key[10].setTexture(see.texturekey);
-		see.key[11].setTexture(see.texturekey);
-		see.key[12].setTexture(see.texturekey);
-		see.key[13].setTexture(see.texturekey);
-		see.key[14].setTexture(see.texturekey);
-		see.key[15].setTexture(see.texturekey);
-		see.key[16].setTexture(see.texturekey);
-
-		see.bkey[0].setTexture(see.btexturekey);
-		see.bkey[1].setTexture(see.btexturekey);
-		see.bkey[2].setTexture(see.btexturekey);
-		see.bkey[3].setTexture(see.btexturekey);
-		see.bkey[4].setTexture(see.btexturekey);
-		see.bkey[5].setTexture(see.btexturekey);
-		see.bkey[6].setTexture(see.btexturekey);
-		see.bkey[7].setTexture(see.btexturekey);
-		see.bkey[8].setTexture(see.btexturekey);
-		see.bkey[9].setTexture(see.btexturekey);
-		see.bkey[10].setTexture(see.btexturekey);
-		see.bkey[11].setTexture(see.btexturekey);
-
-	}
-
 	switch (event.type)
 	{
+	case sf::Event::KeyReleased:
+		switch (event.key.code)
+		{
+		case sf::Keyboard::Tab:
+			see.key[0].setTexture(see.texturekey);
+			break;
+		case sf::Keyboard::Q: //d3
+			see.key[1].setTexture(see.texturekey);
+			break;
+
+		case sf::Keyboard::A: //e3
+			see.key[2].setTexture(see.texturekey);
+			break;
+
+		case sf::Keyboard::Z: //f3
+			see.key[3].setTexture(see.texturekey);
+			break;
+
+		case sf::Keyboard::D: //g3
+			see.key[4].setTexture(see.texturekey);
+			break;
+
+		case sf::Keyboard::F: //a3
+			see.key[5].setTexture(see.texturekey);
+			break;
+
+		case sf::Keyboard::G: //b3
+			see.key[6].setTexture(see.texturekey);
+			break;
+
+		case sf::Keyboard::Space: //c4
+			see.key[7].setTexture(see.texturekey);
+			break;
+
+		case sf::Keyboard::J: //d4
+			see.key[8].setTexture(see.texturekey);
+			break;
+
+		case sf::Keyboard::K: //e4
+			see.key[9].setTexture(see.texturekey);
+			break;
+
+		case sf::Keyboard::L: //f4
+			see.key[10].setTexture(see.texturekey);
+			break;
+
+		case sf::Keyboard::Slash: //g4
+			see.key[11].setTexture(see.texturekey);
+			break;
+
+		case sf::Keyboard::Quote: //a4
+			see.key[12].setTexture(see.texturekey);
+			break;
+
+		case sf::Keyboard::RBracket: //b4
+			see.key[13].setTexture(see.texturekey);
+			break;
+
+		case sf::Keyboard::BackSlash: //c5
+			see.key[14].setTexture(see.texturekey);
+			break;
+
+		case sf::Keyboard::BackSpace: //d5
+			see.key[15].setTexture(see.texturekey);
+			break;
+
+		case sf::Keyboard::Delete: //e5
+			see.key[16].setTexture(see.texturekey);
+			break;
+			//////////////////////////////////////////////////////////////////////
+		case sf::Keyboard::Num1: //c3#
+			see.bkey[0].setTexture(see.btexturekey);
+			break;
+
+		case sf::Keyboard::Num2: //d3#
+			see.bkey[1].setTexture(see.btexturekey);
+			break;
+
+
+		case sf::Keyboard::Num3: //f3#
+			see.bkey[2].setTexture(see.btexturekey);
+			break;
+
+
+		case sf::Keyboard::Num4: //g3#
+			see.bkey[3].setTexture(see.btexturekey);
+			break;
+
+
+		case sf::Keyboard::Num5: //a3#
+			see.bkey[4].setTexture(see.btexturekey);
+			break;
+
+
+		case sf::Keyboard::Num6: //c4#
+			see.bkey[5].setTexture(see.btexturekey);
+			break;
+
+
+		case sf::Keyboard::Num7: //d4# 
+			see.bkey[6].setTexture(see.btexturekey);
+			break;
+
+		case sf::Keyboard::Num8: //f4#
+			see.bkey[7].setTexture(see.btexturekey);
+			hear.sound[24].play();
+			break;
+
+
+		case sf::Keyboard::Num9: //g4#
+			see.bkey[8].setTexture(see.btexturekey);
+			hear.sound[25].play();
+			break;
+
+
+		case sf::Keyboard::Num0: //a4#
+			see.bkey[9].setTexture(see.btexturekey);
+			hear.sound[26].play();
+			break;
+
+
+		case sf::Keyboard::Dash: //c5#
+			see.bkey[10].setTexture(see.btexturekey);
+			break;
+
+		case sf::Keyboard::Equal: //d5#
+			see.bkey[11].setTexture(see.btexturekey);
+			break;
+
+		}
+		break;
+
+
 	case sf::Event::KeyPressed:
 		switch (event.key.code)
 		{
@@ -877,6 +966,7 @@ void Pianocontrols(Pianokeys& see, Pianosounds& hear, sf::Event& event)
 		}
 		break;
 		}
+
 	}
 }
 
