@@ -65,10 +65,6 @@ int main()
 			if (event.type == sf::Event::Closed)
 				window.close();
 
-			cout << mouse.getPosition(window).x << endl;
-
-			cout << mouse.getPosition(window).y << endl;
-
 			if (pianogame == true)
 			{
 				//calls the loader function
@@ -748,19 +744,16 @@ void Pianocontrols(Pianokeys& see, Pianosounds& hear, sf::Event& event)
 
 		case sf::Keyboard::Num8: //f4#
 			see.bkey[7].setTexture(see.btexturekey);
-			hear.sound[24].play();
 			break;
 
 
 		case sf::Keyboard::Num9: //g4#
 			see.bkey[8].setTexture(see.btexturekey);
-			hear.sound[25].play();
 			break;
 
 
 		case sf::Keyboard::Num0: //a4#
 			see.bkey[9].setTexture(see.btexturekey);
-			hear.sound[26].play();
 			break;
 
 
@@ -1004,7 +997,7 @@ void Main_Menu::Sound()
 	if (!clickbuffer.loadFromFile("sounds/clicksound.wav"))
 		cout << "Error in loading sound \n";
 
-	if (!menumusic.loadFromFile("sounds/Demo2.1-AudioTrimmer.com.wav"))
+	if (!menumusic.loadFromFile("sounds/Menu Screen.wav"))
 		cout << "Error in loading sound \n";
 
 	music.play();
